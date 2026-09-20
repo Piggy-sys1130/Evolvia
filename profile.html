@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Evolvia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                            bg: "#EDF3F0",
+                            card: "#DCE7E1",
+                            border: "#BFCFC6",
+                            navbar: "#E5EDEA",
+
+                            primarybutton: "#638874",
+                            buttonHover: "#709187",
+
+                            mainText: "#29383A",
+                            secondaryText: "#84999A",
+
+
+                            badge1: "#83AC91",
+                            badge2: "#99BDAE",
+                            badge3: "#849FA3",
+                            badge4: "#41545A",
+                    },
+                    fontFamily: {
+                            sans: ["Poppins", "sans-serif"],
+                        },
+                },
+            },
+        };
+    </script>
+    </head>
+    <body class="bg-bg text-mainText min-h-screen">
+
+          <!-- Top nav -->
+           <nav class="grid grid-cols-3 items-center px-8 py-4 border-b border-border">
+                <span class="font-bold text-lg">&lt;/&gt; Evolvia</span>
+                <div class="hidden md:flex justify-center gap-6 text-sm text-secondaryText">
+               <a href="dashboard.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5">Dashboard</a>
+                    <a href="practice.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5">Practice</a>
+                    <a href="friends.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5">Friends</a>
+                    <a href="profile.html" class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">Profile</a>
+                    <a href="badges.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5">Badges</a>
+            </div>
+        </div>
+    <div class="flex items-center gap-3">
+            <a href="about.html" class="text-sm text-secondaryText hover:text-mainText">About</a>
+            <span class="text-sm text-secondaryText">Login</span>
+        <button class="bg-primarybutton hover:bg-buttonHover text-white text-sm font-medium px-4 py-2 rounded-full">
+            Sign Up
+    </button>
+</div>
+</nav>
+
+<main class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- profile pic -->
+<section class="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center">
+    <img
+        src="profile_car.webp"
+        alt="Profile Picture"
+        class="w-24 h-24 rounded-full object-cover border-4 border-card"/>
+    </div>
+    <h1 class="text-xl font-bold">Anurag</h1>
+    <span class="mt-1 text-xs bg-primarybutton text-white px-3 py-1 rounded-full font-medium">
+        Level 4
+    </span>
+
+    <div class="grid grid-cols-3 gap-4 mt-6 w-full">
+    <div>
+        <p class="text-lg font-bold">10</p>
+        <p class="text-xs text-secondaryText">Friends</p>
+    </div>
+    <div>
+        <p class="text-lg font-bold">5</p>
+        <p class="text-xs text-secondaryText">Badges</p>
+    </div>
+    <div>
+        <p class="text-lg font-bold">12</p>
+        <p class="text-xs text-secondaryText">Day Streak</p>
+    </div>
+</div>
+</section>
+
+<!-- Right: tabs + content -->
+ <section class="md:col-span-2 bg-card border border-border rounded-2xl p-6">
+    <div class="flex flex-wrap gap-3 text-base border-b border-border pb-4 mb-6">
+        <span class="bg-bg text-mainText font-semibold px-5 py-3 rounded-full cursor-pointe transition-all duartion-200 hover:-translate-y-0.5">Overview</span>
+        <span class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer transition-all duration-200 hover:-translate-y-0.5">Activity</span>
+        <a href="badges.html" class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer transition-all duration-200 hover:-translate-y-0.5">Badges</a>
+        <a href="friends.html" class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer transition-all duration-200 hover:-translate-y-0.5">Friends</a>
+    </div>
+
+        <h2 class="font-semibold mb-4">Recent Activity</h2>
+        <div class="space-y-3 mb-8">
+            <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
+                <span class="text-sm">Baby steps</span>
+                <span class="text-xs text-secondaryText">2h ago</span>
+            </div>
+            <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
+                <span class="text-sm">Earned Badge: Consistent Coder so tuf</span>
+                <span class="text-xstext-secondaryText">1d ago</span>
+            </div>
+            <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
+                <span class="text-sm"> Joined a Friend's Challenge</span>
+                <span class="text-xs text-secondaryText">3d ago</span>
+            </div>
+        </div>
+
+        <h2 id="your-badges" class="font-semibold mb-4 scroll-mt-6">Your Badges</h2>
+        <div class="flex gap-4">
+            <div class="w-14 h-14 rounded-lg bg-badge1"></div>
+            <div class="w-14 h-14 rounded-lg bg-badge2"></div>
+            <div class="w-14 h-14 rounded-lg bg-badge3"></div>
+            <div class="w-14 h-14 rounded-lg bg-badge4"></div>
+            <div class="w-14 h-14 rounded-lg border border-dashed border-gray-500 flex items-center justify-center text-gray-500 text-xs">
+                +1
+            </div>
+        </div>
+        </section>
+
+        </main>
+        <img src="doro.webp" class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-events-none" alt="mascot" />
+    
+    
+    </body>
+    </html>
+
