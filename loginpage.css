@@ -1,0 +1,358 @@
+.login-container{
+    text-align: center;
+    margin-top: 50px;
+    width: 100%;
+    max-width: 630px;
+
+    padding: 55px 60px;
+    background: #DCE7E1;
+    border: 1px solid #BFCFC6;
+    border-radius: 22px;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+.welcome{
+    color: #29383A;
+    margin-right: 65%;
+}
+  
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    color:#41545A;
+    font-size: 14px;
+    text-align: left;
+}
+input{
+    width: 100%;
+    height: 60px;
+    padding: 0 18px;
+    margin-bottom:10px;
+    border-radius: 14px;
+    border: 1px solid #294a7c;
+    background: #EDF3F0;
+    color: #29383A;
+    font-size: 16px;
+    outline: none;
+}
+button{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+/*page background*/
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #071329;
+}
+/*main paig layout */
+.page{
+    min-height: 100vh;
+    display: flex;
+    background:#EDF3F0;
+}
+
+/*left side */
+.hero-section{
+    width: 55%;
+    min-height: 100vh;
+    padding: 55px 6%;
+}
+/*right side*/
+.login-section{
+    width: 45%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+/*Evolvia branding*/
+.brand,
+.login-brand{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.brand-icon{
+    font-size: 42px;
+    font-weight: bold;
+    color: #638874;
+}
+.brand-name{
+    font-size: 40px;
+    font-weight: 700;
+    margin-right:250px;
+    color: #29383A;
+}
+
+/*Hero heading*/
+.hero-content{
+    margin-top: 90px;
+    max-width: 650 px;/*nor                  1.1*/
+    /*margin: 0;*/
+}
+.hero-content h1 span{
+    background: linear-gradient(90deg,#638874, #41545A);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero-content p{
+    margin-top: 22px;
+    font-size: 21px;
+    line-height: 1.5;
+    color: #41545A;
+}
+/*features*/
+.features{
+    display: flex;
+    margin-top: 45px;
+    width: 100%; /*noww */
+}
+.feature{
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+    border-right: 1px solid rgba(130,153,210,0.25);
+}
+.feature:last-child{
+    border-right: none;
+}
+.feature-icon {
+    font-size: 27px;
+    margin-bottom: 10px;
+    color: #638874;
+}
+.feature span{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #41545A;
+}
+
+/*Loading heading*/
+.login-container h2{
+    text-align: left;
+    font-size: 27px;
+    margin:0 0 10px;
+}
+.subtitle{
+    text-align: left;
+    color: #41545A;
+    font-size: 16px;
+    margin-bottom: 32px;
+}
+/*Password eye button*/
+.password-wrap{
+    position: relative;
+    width:100% ;
+}
+.password-wrap input {
+    padding-right:55px ;
+}
+#toggle-password{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: #41545A;
+    font-size: 18px;
+}
+/*Rember+ forgot password*/
+.form-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0 25px;
+}
+.remember-me input{
+    width: 17px;
+    height: 17px;
+    margin:0 ;
+}
+#forgot-password{
+    color: #638874;
+    text-decoration: none;
+}
+/*Login button*/
+.submit-btn{
+    width: 100%;
+    height: 60px;
+    border-radius: 14px;
+    background: #638874;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+
+    box-shadow: 0 10px 30px rgba(92, 91, 255, 0.25);
+
+}
+.submit-btn span{
+    margin-left: 15px;
+    font-size: 21px;
+}
+.submit-btn:hover{
+    background: #709187;
+}
+/*OR divider*/
+.divider{
+    display: flex;
+    align-items: center;
+    gap: 15PX;
+    margin: 30px 0 22px;
+}
+.divider span{
+    flex: 1;
+    height: 1px;
+    background: #29405f;
+}
+.divider p{
+    color: #84999A;
+    font-size: 13px;
+}
+
+/*Social buttons*/
+.social-login{
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+.social-btn{
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: 1px solid #BFCFC6;
+    background: #EDF3F0;
+    color: #29383A;
+}
+/*SIGN UP*/
+.signup-line{
+    text-align: center;
+    margin-top: 27px;
+    color: #41545A;
+}
+.signup-line a{
+    color: #638874;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/*MOBILE RESPONSIVE CSS*/
+@media(max-width: 768px){
+    .page{
+        display: block;
+        min-height: 100vh;
+    }
+    .hero-section{
+        width: 100%;
+        min-height: auto;
+        padding: 28px 20px 10px;
+        text-align: center;
+    }
+    .hero-section .brand{
+        justify-content: center;
+    }
+    .hero-content{
+        margin-top: 30px;
+    }
+    .hero-content h1{
+        font-size: 34px;
+    }
+    .hero-content p{
+        font-size: 16px;
+    }
+    .feature{
+        display: none;
+    }
+    .login-section{
+        width: 100%;
+        min-height: auto;
+        padding: 20px 15px 35px;
+    }
+    .login-container{
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 32px 22px;
+        border-radius: 18px;
+    }
+    .login-brand .brand-name{
+        font-size: 32px;
+    }
+    .login-container h2{
+        font-size: 24px;
+    }
+    .field input{
+        height: 56px;
+    }
+    .submit-btn{
+        height: 56px;
+    }
+}
+
+/*  FOR VERY SMALL PHONES THIS CODE IS USED*/
+    @media(max-width: 400px) {
+        .hero-content h1{
+            font-size: 29px;
+        }
+        .login-section{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .login-container{
+            padding: 18px 18px;
+        }
+        .form-options{
+            font-size: 12px;
+        }
+        #forgot-password{
+            font-size: 12px;
+        }
+    }
+
+    /*remeber me text*/
+    .remember-me span{
+        color:#41545A
+    }
+    
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus{
+        -webkit-text-fill-color: #29383A;
+        -webit-box-shado: 0 0 0px 1000px #EDF3F0 inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+    /* Skip Login Button */
+.skip-login-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 65px;
+
+    background: #638874;
+    color: white;
+
+    padding: 12px 20px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.skip-login-btn:hover {
+    background: #709187;
+    transform: translateY(-2px);
+}

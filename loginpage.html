@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolvia Login</title>
+    <link rel="stylesheet" href="loginpage.css">
+</head>
+<body>
+    <div class="page">
+<!--this code for left section -->
+        <div class="hero-section">
+            <div class="brand">
+                <span class="brand-icon">&lt;/&gt;</span>
+                <span class="brand-name">Evolvia</span>
+            </div>
+            <div class="hero-content">
+                <h1>
+                    Code. Learn.
+                    <span>Level Up.</span>
+                </h1>
+
+                <p>
+                    Your journey as a better developer
+                    starts here.
+                </p>
+                <div class="features">  
+                <div class="feature">
+                    <div class="feature-icon">&lt;/&gt;</div>
+                    <span>
+                        Practice<br>
+                        Coding
+                    </span>
+                </div>
+            
+                <div class="feature">
+                <div class="feature-icon">| | |</div> <!--here paste standing emoji-->
+                <span>Track<br>Progress</span>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <span>Earn<br>Rewards</span>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <span>Connect<br>With Friends</span>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+
+<!--this code for right login section-->
+    <div class="login-section">
+        <div class="login-container">
+            <!--LOGIN BRAND-->
+            <div class="brand-icon">
+                <span class="brand-icon">&lt;/&gt;</span>
+                <span class="brand-name">Evolvia</span>
+            </div>
+
+            <!--Welcome-->
+            <h3 class="welcome">Welcome back! 🖐️</h3>
+
+            <p class="subtitle">
+                Log in to continue your coding journey
+            </p>
+
+            <!--login form-->
+            <form id="field">
+                <!--username-->
+                <div class="field">
+                    <label for="username">
+                        Username or Email
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Username or Email"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <div
+                        id="username-error"
+                        class="error-message">
+                    </div>        
+                </div>
+
+                <!--password-->
+                <div class="field">
+                    <label for="password">
+                        Password
+                    </label>
+                    <div class="password-wrap">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="password"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <!--button-->
+                        <button
+                            type="button"
+                            id="toggle-password"
+                            aria-label="show password"
+                            aria-pressed="false">
+                            👁️                        
+                        </button>
+                        
+                    </div>
+                    <div
+                        id="password-error"
+                        class="error-message">
+                    </div>
+                </div>
+                <!--remember+ foprgot password-->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input
+                            type="checkbox"
+                            id="remember-me">
+                        <span>Remember me</span>
+                    </label>
+
+                    <a
+                        href="#"
+                        id="forgot-password">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!--general form error-->
+                <div 
+                    id="form-error"
+                    class="form-error">
+                </div>
+                <!--login button-->
+                <button 
+                    type="submit"
+                    class="submit-btn">
+
+                    Login
+                    <span>➡️</span> <!--this arrow may be wrong-->
+
+                </button>
+
+            </form>
+            <!--Divider-->
+            <div class="divider">
+                <span></span>
+
+                <p>OR</p>
+
+                <span></span>
+            </div>
+
+            <!--social login-->
+            <div class="social-login">
+
+                <button 
+                    type="button"
+                    class="social-btn"
+                    aria-label="Continue with Google">
+
+                    <span>G</span>
+
+                </button>
+
+                <button
+                    type="button"
+                    class="social-btn"
+                    aria-label="Continue with GitHub">
+
+                    <span>Git</span>
+
+                </button>
+
+                 <button
+                    type="button"
+                    class="social-btn"
+                    aria-label="Continue with Discord">
+
+                    <span>Discord</span>
+
+                </button>
+
+            </div>
+
+            <!--sign up -->     <!--tommorrow we have to create a sign up page for our evovlia -->
+            <p class="signup-line">   
+
+                Don't have an account?
+
+                <a
+                    href="#"
+                    id="signup-link">
+                     
+                    Sign up
+                    
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<a href="../friend4 profile page (sachin)/profile.html" class="skip-login-btn">
+    Skip Login →
+</a>
+   
+
+    <!-- this includes a java script file to handle java script logic-->
+     <script src="loginpage.js"></script>
+</body>
+</html>
