@@ -105,5 +105,43 @@ function createAccount(username, email,password){
 
         })
     })
-    
+    .then(function (response){
+        return response.json().then(function(data){
+            return{status: response.status, body:data};
+        });
+    })
+    .then(function(result){
+        if (result.status=== 200 || result.status=== 201){
+            alert("Account Created! You can now log in.");
+            form.reset();
+
+            //agar tum direct redirect hna chahte ho login page me to is line ka use karo ;
+            //window.location.href = "login.html";
+        }
+        else{
+            // show karega error message jo backend ke tarf se aayega 
+            alert(result.body.message || "Something went wrong, please try again"); 
+        }
+    })
+    .catch (function(error){
+        console.log("Error:", error);
+        alert("Could not connect to the server. Check if the backend id running.");
+    })
+    .finally(function(){
+        submitBtn.disabled = false;
+        submitBtn.innerHTML= 'Create Account <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke=#fff" stoke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 616 6-6 6"/><svg>';
+    });
 }
+
+//social login button
+const socialButtons = document.querySelectorAll(".social");
+
+socialButtons.forEach(function(btn){
+    btn.addEventListener("click", function(){
+        const provider = btn.getAttribute("data-provider");
+
+        //redirect straight to the backend's OAuth route
+        window.location.href="" + provider; 
+
+    });
+})
