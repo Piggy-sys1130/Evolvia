@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+Flask-SQALchemy
+Flask-JWT-Extented
+Flask-Bcrypt
+requests
+gunicorn
