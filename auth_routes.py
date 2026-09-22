@@ -2,8 +2,8 @@ from flask import Blueprint, jsonify
 from sqlalchemy.exc import IntegrityError
 from extensions import db, bcrypt
 from flask_jwt_extended import create_access_token
-from models.user import User
-from models.stats import UserStats
+from user import User
+from stats import UserStats
 from utils import get_json_body
 
 

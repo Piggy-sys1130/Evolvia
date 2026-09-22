@@ -4,13 +4,13 @@ from datetime import timedelta
 from flask import Flask
 from flask_cors import CORS
 from extensions import db, bcrypt, jwt
-from routes.auth_routes import auth_bp
-from models.stats import UserStats  # noqa: F401  (table register hone ke liye import zaroori hai)
-from routes.stats_routes import stats_bp
-from routes.code_routes import code_bp
-from routes.profile_routes import profile_bp
-from models.friendship import Friendship
-from routes.friend_routes import friend_bp
+from auth_routes import auth_bp
+from stats import UserStats  # noqa: F401  (table register hone ke liye import zaroori hai)
+from stats_routes import stats_bp
+from code_routes import code_bp
+from profile_routes import profile_bp
+from friendship import Friendship
+from friend_routes import friend_bp
 
 app = Flask(__name__)
 

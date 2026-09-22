@@ -2,8 +2,8 @@ from flask import Blueprint, request,jsonify
 from flask_jwt_extended import jwt_required , get_jwt_identity
 
 from extensions import db
-from models.user import User
-from models.friendship import Friendship
+from user import User
+from friendship import Friendship
 
 friend_bp = Blueprint('friend',__name__)
 

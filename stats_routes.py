@@ -2,8 +2,8 @@ from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from extensions import db
-from models.stats import UserStats
-from services.gamification_service import (
+from stats import UserStats
+from gamification_service import (
     DAILY_XP_MAX,
     get_all_badges,
     get_effective_daily_xp,

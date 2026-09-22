@@ -1,9 +1,9 @@
 from flask import Blueprint , jsonify
 from flask_jwt_extended import jwt_required,get_jwt_identity
 
-from models.user import User
-from models.stats import UserStats
-from services.gamification_service import(get_all_badges,get_effective_daily_xp,get_effective_streak)
+from user import User
+from stats import UserStats
+from gamification_service import(get_all_badges,get_effective_daily_xp,get_effective_streak)
 
 profile_bp = Blueprint("profile",__name__)
 

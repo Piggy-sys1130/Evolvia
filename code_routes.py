@@ -3,8 +3,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 import requests
 
 from extensions import db
-from models.stats import UserStats
-from services.gamification_service import (process_code_run , process_error_solved)
+from stats import UserStats
+from gamification_service import (process_code_run , process_error_solved)
 from utils import get_json_body
 
 
