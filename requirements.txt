@@ -1,6 +1,6 @@
 Flask
 Flask-Cors
-Flask-SQALchemy
+Flask-SQLAlchemy
 Flask-JWT-Extented
 Flask-Bcrypt
 requests
