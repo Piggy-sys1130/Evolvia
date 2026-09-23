@@ -92,42 +92,78 @@
 
 <!-- Right: tabs + content -->
  <section class="md:col-span-2 bg-card border border-border rounded-2xl p-6">
-    <div class="flex flex-wrap gap-3 text-base border-b border-border pb-4 mb-6">
-        <span class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer transition-all duartion-200 hover:-translate-y-0.5 active:scale-95">Overview</span>
-        <span class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Activity</span>
-        <a href="badges.html" class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Badges</a>
-      <details class="group relative">
-            <summary class="list-none cursor-pointer text-center">
-                <p class="text-lg font-bold group-hover:text-primarybutton transition-colors">
-                    4
-                </p>
-                <p class="text-xs text-secondaryText">Friends</p>
-            </summary>
+           <div class="flex flex-wrap gap-3 text-base border-b border-border pb-4 mb-6">
+    <span class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer">
+        Overview
+    </span>
 
-            <div class="absolute top-full left-1/2-translate-x-1/2 mt-3 w-64 rounded-xl border border-border bg-[#EDF3F0] p-4 text-left shadow-lg z-50">
-                <h3 class="font-semibold mb-4">Your friends</h3>
+    <span class="text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full cursor-pointer">
+        Activity
+    </span>
 
-                <ul class="space-y-4">
-                    <li class="flex items-center justify-between rounded-lg px-2 py-2">
-                        <p class="font-bold">Bhavishya</p>
-                        <p class="text-sm text-secondaryText">Level 2</p>
-                    </li>
-                    <li class="flex items-center justify-between rounded-lg px-2 py-2">
-                        <p class="font-bold">Aanand</p>
-                        <p class="text-sm text-secondaryText">Level 8</p>
-                    </li>
-                    <li class="flex items-center justify-between rounded-lg px-2 py-2">
-                        <p class="font-bold">Piggy</p>
-                        <p class="text-sm text-secondaryText">Level 6</p>
-                    </li>
-                </ul>
+    <details class="group relative">
+        <summary class="list-none cursor-pointer text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full">
+            Badges
+        </summary>
 
-                <a href="friends.html" class="infinite-block relative top-3 bg-primarybutton hover:bg-buttonHover active:scale-95 transition-all text-white text-sm px-4 py-2 rounded-lg">
-                    Load more +
-                </a>
-                
-            </div>
-        </details>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border bg-[#EDF3F0] p-5 text-left shadow-lg z-50">
+            <h3 class="font-semibold mb-4">Your badges</h3>
+
+            <ul class="space-y-2">
+                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
+                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge1"></span>
+                    <span class="text-sm font-bold">Consistent Coder</span>
+                </li>
+                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
+                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge2"></span>
+                    <span class="text-sm font-bold">Baby Steps</span>
+                </li>
+                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
+                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge3"></span>
+                    <span class="text-sm font-bold">U da real Flash</span>
+                </li>
+                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
+                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge4"></span>
+                    <span class="text-sm font-bold">Team Player</span>
+                </li>
+            </ul>
+
+            <a href="badges.html" class="inline-block mt-3 rounded-lg bg-primarybutton px-4 py-2 text-sm text-white hover:bg-buttonHover">
+                View all
+            </a>
+        </div>
+    </details>
+
+    <details class="group relative">
+        <summary class="list-none cursor-pointer text-center px-5 py-3 rounded-full">
+            <span class="block text-lg font-bold">4</span>
+            <span class="block text-xs text-secondaryText">Friends</span>
+        </summary>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border bg-[#EDF3F0] p-5 text-left shadow-lg z-50">
+            <h3 class="font-semibold mb-4">Your friends</h3>
+
+            <ul class="space-y-2">
+                <li class="flex items-center justify-between rounded-lg px-2 py-2">
+                    <span class="font-bold">Bhavishya</span>
+                    <span class="text-sm text-secondaryText">Level 2</span>
+                </li>
+                <li class="flex items-center justify-between rounded-lg px-2 py-2">
+                    <span class="font-bold">Aanand</span>
+                    <span class="text-sm text-secondaryText">Level 8</span>
+                </li>
+                <li class="flex items-center justify-between rounded-lg px-2 py-2">
+                    <span class="font-bold">Piggy</span>
+                    <span class="text-sm text-secondaryText">Level 6</span>
+                </li>
+            </ul>
+
+            <a href="friends.html" class="inline-block mt-3 rounded-lg bg-primarybutton px-4 py-2 text-sm text-white hover:bg-buttonHover">
+                Load more +
+            </a>
+        </div>
+    </details>
+</div>
     </div>
 
         <h2 class="font-semibold mb-4">Recent Activity</h2>
