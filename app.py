@@ -4,15 +4,19 @@ from datetime import timedelta
 from flask import Flask
 from flask_cors import CORS
 from extensions import db, bcrypt, jwt
+
 from auth_routes import auth_bp
-from stats import UserStats  # noqa: F401  (table register hone ke liye import zaroori hai)
+from google_auth import google_bp
+# from stats import UserStats
 from stats_routes import stats_bp
 from code_routes import code_bp
 from profile_routes import profile_bp
-from friendship import Friendship
+# from friendship import Friendship
 from friend_routes import friend_bp
+from leaderboard_routes import leaderboard_bp
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 
@@ -30,14 +34,19 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)
 db.init_app(app)
 bcrypt.init_app(app)
 jwt.init_app(app)
-CORS(app)
+
 
 # Blueprint register
 app.register_blueprint(auth_bp)
+app.register_blueprint(google_bp)
 app.register_blueprint(stats_bp)
 app.register_blueprint(code_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(friend_bp)
+app.register_blueprint(leaderboard_bp)
+
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
     with app.app_context():
@@ -47,3 +56,5 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0",
             port=5000,
             debug=True)
+
+ 
