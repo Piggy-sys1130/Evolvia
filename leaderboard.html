@@ -41,7 +41,7 @@
             <span class="font-bold text-lg">&lt;/&gt; Evolvia</span>
             <div class="hidden md:flex justify-center gap-6 text-sm text-secondaryText">
                 <a href="dashboard.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Dashboard</a>
-                <a href="practice.html" class="text-secondaryText hover:bg-card hover:text_mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Practice</a>
+                <a href="practice.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Practice</a>
                 <a href="friends.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active::scale-95">Friends</a>
                 <a href="profile.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Profile</a>
                 <a href="badges.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Badges</a>
@@ -55,3 +55,86 @@
                 </button>
             </div>
         </nav>
+
+        <main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-[280px_1fr_320px] gap-6">
+
+            <!-- Left: welcome card -->
+             <aside class="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-full bg-badge1 flex items-center justify-center text-2xl font-bold text-white mb-4">
+                    N
+                </div>
+                <h2 class="font-bold text-lg">Welcome,<br />New Coder!</h2>
+                <p class="text-xs text-secondaryText mt-2 mb-4">Start your coding journey. Build skills, earn XP and grow!</p>
+                <span class="bg-primarybutton text-white text-xs font-medium px-3 py-1 rounded-full mb-3">Level 1</span>
+                <div class="w-full bg-bg rounded-full h-2 mb-1">
+                    <div class="bg-primarybutton h-2 rounded-full" style="width: 0%"></div>
+                </div>
+                <p class="text-xs text-secondaryText mb-6">0 / 500 XP</p>
+
+                <div class="grid grid-cols-3 gap-2 w-full mb-6">
+                    <div class="bg-bg border border-border rounded-lg py-3">
+                        <p class="font-bold">0</p>
+                        <p class="text-xs text-secondaryText">XP</p>
+                    </div>
+                    <div class="bg-bg border border-border rounded-lg py-3">
+                        <p class="font-bold">0</p>
+                        <p class="text-xs text-secondaryText">Score</p>
+                    </div>
+                    <div class="bg-bg border border-border rounded-lg py-3">
+                        <p class="font-bold">0</p>
+                        <p class="text-xs text-seconaryText">Day Text</p>
+                    </div>
+                </div>
+
+                <p class="text-xs text-secondarText italic">"Small steps every day lead to big results."</p>
+             </aside>
+
+             <!-- Center: leaderboard -->
+              <section>
+                <div class="bg-primarybutton text-white rounded-2xl p-8 mb-6">
+                    <h1 class="text-3xl font-bold mb-2">🏆 Leaderboard</h1>
+                    <p class="text-sm opacity-90">See where you stand among your friends and the Evolvia Community.</p>
+                </div>
+
+                <div class="bg-card border border-border rounded-2xl p-6">
+                    <div class="flex gap-2 mb-6">
+                        <span class="bg-primarybutton text-white text-sm font-medium px-4 py-2 rounded-full cursor-pointer">Global</span>
+                        <span class="text-secondaryText hover:bg-bg text-sm px-4 py-2 rounded-full cursor-pointer transition-colors">Friends</span>
+                        <span class="text-secondaryText hovr:bg-bg text-sm px-4 py-2 rounded-full cursor-pointer transition-colors">This Week</span>
+                    </div>
+
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-secondaryText text-left border-b border-border">
+                                <th class="pb-3 font-medium">Rank</th>
+                                <th class="pb-3 font-medium">User</th>
+                                <th class="pb-3 font-medium">Level</th>
+                                <th class="pb-3 font-medium">XP</th>
+                                <th class="pb-3 font-medium">Streak</th>
+                                <th class="pb-3 font-medium"></th>
+                            </tr>
+                        </thead>
+                    </tbody>
+                    
+                    <tr class="border-b border-border">
+                        <td class="py-4 font-bold">1</td>
+                        <td class="py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-badge1 flex items-center justify-center text-xs font-bold text-white">C</div>
+                            </div>
+                            <p class="font-semibold">CodeMaster</p>
+                            <p class="text-xs text-secondaryText">Level 12</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="py-4"><span class="bg-primarybutton text-white text-xs px-2 py-1 rounded-full">Lv.12</span></td>
+                <td class="py-4 font-semibold">12,450</td>
+                <td class="py-4">🔥 12</td>
+                <td class="py-4 text-right">
+                    <button class="text-primarybutton hover:text-buttonHover text-xs font-medium border border-border px-3 py-1.5 rounded-lg">View Profile</button>
+                </td>
+                    </tr>
+                    </table>
+                </div>
+              </section>
+        </main>
