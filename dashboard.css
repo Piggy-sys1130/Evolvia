@@ -1,0 +1,82 @@
+/*Basic settings*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial,  sans-serif;
+    background: #eef5f1;
+    color: #19382f;
+}
+
+/*NAvbar*/
+.navbar{
+    height: 65px;
+    background: #f7faf8;
+    border-bottom: 1px solid #d5e0db;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+.logo{
+    font-size: 20px;
+}
+.logo span{
+    font-weight: bold;
+}
+.nav-links{
+    display: flex;
+    gap: 10px;
+}
+.nav-links a{
+    text-decoration: none;
+    color: #668078;
+    padding: 10px 13px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.nav-links a:hover{
+    background: #e1ebe5;
+}
+
+.nav-links .active{
+    background: #638b79;
+    color: white;
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.nav-right a{
+    display: flex;
+    color: #58736a;
+    font-size: 14px;
+}
+
+.theme-btn{
+    border: none;
+    background: none;
+    font-size: 20px;
+}
+
+.signup-btn{
+    background: #638b79;
+    color: white !important;
+    padding: 10px 17 17px;
+    border-radius: 20px;
+}
+
+/*MAin layout*/
+.dashboard-container{
+    width: 95%;
+    max-width: 1450px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 260px 1fr 330px;
+    gap: 18px;
+}
+
+/*Common cards*/
