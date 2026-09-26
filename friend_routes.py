@@ -1,17 +1,16 @@
-from flask import Blueprint, request,jsonify
-from flask_jwt_extended import jwt_required , get_jwt_identity
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from extensions import db
-from user import User
-from friendship import Friendship
+from models.user import User
+from models.friendship import Friendship
 
-friend_bp = Blueprint('friend',__name__)
 
-#===============================================
-# SEND friend request
-#===============================================
+friend_bp = Blueprint("friend", __name__)
 
-@friend_bp.route('/api/friends/request', methods=['POST'])
+
+# send friend request
+@friend_bp.route("/api/friends/request", methods=["POST"])
 @jwt_required()
 def send_friend_request():
 
@@ -26,10 +25,12 @@ def send_friend_request():
 
     username = data.get("username")
 
-    if not username:
+    if not isinstance(username, str) or not username.strip():
         return jsonify({
             "error": "Username is required"
         }), 400
+
+    username = username.strip()
 
     receiver = User.query.filter_by(
         username=username
@@ -68,6 +69,20 @@ def send_friend_request():
                 "error": "Friend request already exists"
             }), 400
 
+        # rejected request ko dobara allow karna
+        if existing.status == "rejected":
+            existing.sender_id = user_id
+            existing.receiver_id = receiver.id
+            existing.status = "pending"
+
+            db.session.commit()
+
+            return jsonify({
+                "success": True,
+                "message": "Friend request sent",
+                "request_id": existing.id
+            }), 201
+
     friendship = Friendship(
         sender_id=user_id,
         receiver_id=receiver.id,
@@ -83,114 +98,108 @@ def send_friend_request():
         "request_id": friendship.id
     }), 201
 
-#====================================================
-#View Pending Request
-#====================================================
 
-@friend_bp.route('/api/friends/request',methods=['GET'])
+# view pending requests
+@friend_bp.route("/api/friends/request", methods=["GET"])
 @jwt_required()
-
 def get_friend_requests():
+
     user_id = int(get_jwt_identity())
-    requests = Friendship.query.filter_by(receiver_id=user_id , status="pending").all()
+
+    requests = Friendship.query.filter_by(
+        receiver_id=user_id,
+        status="pending"
+    ).all()
 
     result = []
 
     for friendship in requests:
+
         sender = User.query.get(friendship.sender_id)
+
+        if not sender:
+            continue
+
         result.append({
-            "request_id" : friendship.id,
-            "user_id" : sender.id,
-            "username" : sender.username,
-            "created_at" : friendship.created_at.isoformat()
+            "request_id": friendship.id,
+            "user_id": sender.id,
+            "username": sender.username,
+            "created_at": friendship.created_at.isoformat()
         })
 
     return jsonify({
-        "requests" : result
-    }),200
+        "requests": result
+    }), 200
 
-#==============================================================
-# Accept Friend Request
-#==============================================================
 
-@friend_bp.route('/api/friends/request/<int:request_id>/accept', methods = ['POST'])
+# accept friend request
+@friend_bp.route(
+    "/api/friends/request/<int:request_id>/accept",
+    methods=["POST"]
+)
 @jwt_required()
-
 def accept_friend_request(request_id):
+
     user_id = int(get_jwt_identity())
+
     friendship = Friendship.query.filter_by(
-        id = request_id,
+        id=request_id,
         receiver_id=user_id,
-        status = "pending"
+        status="pending"
     ).first()
 
     if not friendship:
         return jsonify({
-            "error" : "Friend request not found"
-        }),404
+            "error": "Friend request not found"
+        }), 404
 
     friendship.status = "accepted"
 
     db.session.commit()
+
     return jsonify({
-        "success" : True,
-        "message" : "friend request accepted"
-    }),200
+        "success": True,
+        "message": "Friend request accepted"
+    }), 200
 
-# =====================================================
-# Reject Friend Request
-# =====================================================
 
-@friend_bp.route('/api/friends/request/<int:request_id>/reject',methods = ['POST'])
+# reject friend request
+@friend_bp.route(
+    "/api/friends/request/<int:request_id>/reject",
+    methods=["POST"]
+)
 @jwt_required()
-
 def reject_friend_request(request_id):
+
     user_id = int(get_jwt_identity())
 
-    friendship =  Friendship.query.filter_by(
-        id = request_id,
-        receiver_id = user_id,
-        status = "pending"
+    friendship = Friendship.query.filter_by(
+        id=request_id,
+        receiver_id=user_id,
+        status="pending"
     ).first()
 
     if not friendship:
         return jsonify({
-            "success" : True,
-            "message" : "Friend request rejected"
-        }),200
+            "error": "Friend request not found"
+        }), 404
 
-# ==================================================
-# FRIENDS LIST
-# ==================================================
+    friendship.status = "rejected"
 
-@friend_bp.route('/api/friends', methods=['GET'])
+    db.session.commit()
+
+    return jsonify({
+        "success": True,
+        "message": "Friend request rejected"
+    }), 200
+
+
+# friends list
+@friend_bp.route("/api/friends", methods=["GET"])
 @jwt_required()
 def get_friends():
 
     user_id = int(get_jwt_identity())
-
-    # ----------------------------------------------
-    # DEBUG: database me saari friendships dekho
-    # ----------------------------------------------
-
-    all_friendships = Friendship.query.all()
-
-    print("====================================")
-    print("USER ID:", user_id)
-
-    print("ALL FRIENDSHIPS:", [
-        {
-            "id": f.id,
-            "sender": f.sender_id,
-            "receiver": f.receiver_id,
-            "status": f.status
-        }
-        for f in all_friendships
-    ])
-
-    # ----------------------------------------------
-    # Sirf accepted friendships
-    # ----------------------------------------------
 
     friendships = Friendship.query.filter(
         (
@@ -199,20 +208,6 @@ def get_friends():
         ),
         Friendship.status == "accepted"
     ).all()
-
-    print("ACCEPTED FRIENDSHIPS:", [
-        {
-            "id": f.id,
-            "sender": f.sender_id,
-            "receiver": f.receiver_id,
-            "status": f.status
-        }
-        for f in friendships
-    ])
-
-    # ----------------------------------------------
-    # Friends list
-    # ----------------------------------------------
 
     friends = []
 
@@ -226,16 +221,11 @@ def get_friends():
         friend = User.query.get(friend_id)
 
         if friend:
-
             friends.append({
                 "user_id": friend.id,
                 "username": friend.username
             })
 
-    print("FINAL FRIENDS:", friends)
-    print("====================================")
-
     return jsonify({
         "friends": friends
     }), 200
-
