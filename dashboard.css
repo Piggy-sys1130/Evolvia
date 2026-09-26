@@ -352,3 +352,62 @@ body{
     border: 1px solid #dce7e2;
     border-radius: 9px;
 }
+.progress-language-icon{
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    border-radius: 50%;
+    background: #edf4f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.progress-card h3{
+    font-size: 13px;
+    margin-top: 8px;
+}
+.progress-card p{
+    font-size: 11px;
+    color: #72877e;
+}
+.mini-progress{
+    height: 6px;
+    background: #e0ede5;
+    border-radius: 10px;
+    margin-top: 9px;
+}
+.mini-progress div{
+    width: 0%;
+    height: 100%;
+    background: #78a68e;
+    border-radius: 10px;
+}
+
+/*stats*/
+.stats-section{
+    padding: 18px;
+}
+.stats-cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.stat-card{
+    padding: 15px;
+    border: 1px solid #dce7e2;
+}
+.stat-card > span{
+    font-size: 20px;
+    color: #527e6b;
+}
+
+.stat-card h3{
+    font-size: 14px;
+    margin-top: 8px;
+}
+.stat-card p{
+    font-size: 10px;
+    color: #71877e;
+    margin-top: 5px;
+}
