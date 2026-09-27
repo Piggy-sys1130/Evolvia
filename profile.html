@@ -4,196 +4,308 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Evolvia</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                            bg: "#EDF3F0",
-                            card: "#DCE7E1",
-                            border: "#BFCFC6",
-                            navbar: "#E5EDEA",
-
-                            primarybutton: "#638874",
-                            buttonHover: "#709187",
-
-                            mainText: "#29383A",
-                            secondaryText: "#84999A",
-
-
-                            badge1: "#83AC91",
-                            badge2: "#99BDAE",
-                            badge3: "#849FA3",
-                            badge4: "#41545A",
+                        bg: "#EDF3F0",
+                        card: "#DCE7E1",
+                        border: "#BFCFC6",
+                        navbar: "#E5EDEA",
+                        primarybutton: "#638874",
+                        buttonHover: "#709187",
+                        mainText: "#29383A",
+                        secondaryText: "#84999A",
+                        badge1: "#83AC91",
+                        badge2: "#99BDAE",
+                        badge3: "#849FA3",
+                        badge4: "#41545A",
                     },
                     fontFamily: {
-                            sans: ["Poppins", "sans-serif"],
-                        },
+                        sans: ["Poppins", "sans-serif"],
+                    },
                 },
             },
         };
     </script>
-    </head>
-    <body class="bg-bg text-mainText min-h-screen">
+</head>
 
-          <!-- Top nav -->
-           <nav class="grid grid-cols-3 items-center px-8 py-4 border-b border-border">
-                <span class="font-bold text-lg">&lt;/&gt; Evolvia</span>
-                <div class="hidden md:flex justify-center gap-6 text-sm text-secondaryText">
-               <a href="dashboard.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Dashboard</a>
-                    <a href="practice.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Practice</a>
-                    <a href="friends.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Friends</a>
-                    <a href="profile.html" class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">Profile</a>
-                    <a href="badges.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Badges</a>
-            </div>
-        </div>
-    <div class="flex items-center gap-3">
-        <a href="leaderboard.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">LeaderBoard</a>
-            <a href="about.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">About</a>
-            <a href="loginpage.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Login</a>
-        <button class="bg-primarybutton hover:bg-buttonHover text-white text-sm font-medium px-4 py-2 rounded-full">
-            Sign Up
-    </button>
-</div>
-</nav>
+<body class="bg-bg text-mainText min-h-screen">
 
-<main class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Top nav -->
+    <nav class="grid grid-cols-3 items-center px-8 py-4 border-b border-border">
 
-    <!-- profile pic -->
-<section class="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center">
-    <img
-        src="profile_car.webp"
-        alt="Profile Picture"
-        class="w-24 h-24 rounded-full object-cover border-4 border-card"/>
-    </div>
-    <h1 class="text-xl font-bold">Anurag</h1>
-    <span class="mt-1 text-xs bg-primarybutton text-white px-3 py-1 rounded-full font-medium">
-        Level 4
-    </span>
+        <span class="font-bold text-lg">&lt;/&gt; Evolvia</span>
 
-    <div class="grid grid-cols-3 gap-4 mt-6 w-full">
-        <div>
-            <p class="text-lg font-bold">4</p>
-             <p class="text-xs text-secondaryText">Friends</p>
-            </div>
-    <div>
-        <p class="text-lg font-bold">4</p>
-        <p class="text-xs text-secondaryText">Badges</p>
-    </div>
-    <div>
-        <p class="text-lg font-bold">5</p>
-        <p class="text-xs text-secondaryText">Day Streak</p>
-    </div>
-</div>
-</section>
+        <div class="hidden md:flex justify-center gap-6 text-sm text-secondaryText">
 
-<!-- Right: tabs + content -->
- <section class="md:col-span-2 bg-card border border-border rounded-2xl p-6">
-           <div class="flex flex-wrap items-center gap-3 text-base border-b border-border pb-4 mb-6">
-    <span class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">Overview</span>
+            <a href="dashboard.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Dashboard
+            </a>
 
+            <a href="practice.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Practice
+            </a>
 
-    <details class="group relative">
-        <summary class="list-none cursor-pointer text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full">
-            Badges
-        </summary>
+            <a href="friends.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Friends
+            </a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border bg-[#EDF3F0] p-5 text-left shadow-lg z-50">
-            <h3 class="font-semibold mb-4">Your badges</h3>
+            <a href="profile.html"
+               class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">
+                Profile
+            </a>
 
-            <ul class="space-y-2">
-                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
-                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge1"></span>
-                    <span class="text-sm font-bold">Mr.Consistent</span>
-                </li>
-                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
-                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge2"></span>
-                    <span class="text-sm font-bold">Baby Steps</span>
-                </li>
-                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
-                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge3"></span>
-                    <span class="text-sm font-bold">U da real Flash</span>
-                </li>
-                <li class="flex items-center gap-3 rounded-lg px-2 py-2">
-                    <span class="h-8 w-8 shrink-0 rounded-lg bg-badge4"></span>
-                    <span class="text-sm font-bold">Team Player</span>
-                </li>
-            </ul>
-
-            <a href="badges.html" class="inline-block mt-3 rounded-lg bg-primarybutton px-4 py-2 text-sm text-white hover:bg-buttonHover">
-                View all
+            <a href="badges.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Badges
             </a>
         </div>
-    </details>
 
-    <details class="group relative">
-        <summary class="list-none cursor-pointer text-center px-5 py-3 rounded-full">
-            <span class="block text-lg font-bold">4</span>
-            <span class="block text-xs text-secondaryText">Friends</span>
-        </summary>
+        <div class="flex items-center gap-3">
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border bg-[#EDF3F0] p-5 text-left shadow-lg z-50">
-            <h3 class="font-semibold mb-4">Your friends</h3>
-
-            <ul class="space-y-2">
-                <li class="flex items-center justify-between rounded-lg px-2 py-2">
-                    <span class="font-bold">Bhavishya</span>
-                    <span class="text-sm text-secondaryText">Level 2</span>
-                </li>
-                <li class="flex items-center justify-between rounded-lg px-2 py-2">
-                    <span class="font-bold">Aanand</span>
-                    <span class="text-sm text-secondaryText">Level 8</span>
-                </li>
-                <li class="flex items-center justify-between rounded-lg px-2 py-2">
-                    <span class="font-bold">Piggy</span>
-                    <span class="text-sm text-secondaryText">Level 6</span>
-                </li>
-            </ul>
-
-            <a href="friends.html" class="inline-block mt-3 rounded-lg bg-primarybutton px-4 py-2 text-sm text-white hover:bg-buttonHover">
-                Load more +
+            <a href="leaderboard.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                LeaderBoard
             </a>
-        </div>
-    </details>
-</div>
-    </div>
 
-        <h2 class="font-semibold mb-4">Recent Activity</h2>
-        <div class="space-y-3 mb-8">
-            <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
-                <span class="text-sm">Baby steps</span>
-                <span class="text-xs text-secondaryText">2h ago</span>
-            </div>
-            <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
-                <span class="text-sm">Earned Badge: Mr.Consistent</span>
-                <span class="text-sm text-secondaryText">1d ago</span>
-            </div>
-            <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
-                <span class="text-sm"> Joined a Friend's Challenge</span>
-                <span class="text-xs text-secondaryText">3d ago</span>
-            </div>
-        </div>
+            <a href="about.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                About
+            </a>
 
-        <h2 id="your-badges" class="font-semibold mb-4 scroll-mt-6">Your Badges</h2>
-        <div class="flex gap-4">
-            <div class="w-14 h-14 rounded-lg bg-badge1"></div>
-            <div class="w-14 h-14 rounded-lg bg-badge2"></div>
-            <div class="w-14 h-14 rounded-lg bg-badge3"></div>
-            <div class="w-14 h-14 rounded-lg bg-badge4"></div>
-            <div class="w-14 h-14 rounded-lg border border-dashed border-gray-500 flex items-center justify-center text-gray-500 text-xs">
-                +1
-            </div>
+            <a href="loginpage.html"
+               class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Login
+            </a>
+
+            <button class="bg-primarybutton hover:bg-buttonHover text-white text-sm font-medium px-4 py-2 rounded-full">
+                Sign Up
+            </button>
+
         </div>
+    </nav>
+
+
+    <main class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Profile -->
+        <section class="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center">
+
+            <img
+                src="profile_car.webp"
+                alt="Profile Picture"
+                class="w-24 h-24 rounded-full object-cover border-4 border-card"
+            />
+
+            <h1 id="profile-username" class="text-xl font-bold mt-4">
+                Loading...
+            </h1>
+
+            <span
+                id="profile-level"
+                class="mt-1 text-xs bg-primarybutton text-white px-3 py-1 rounded-full font-medium">
+                Level 1
+            </span>
+
+
+            <div class="grid grid-cols-3 gap-4 mt-6 w-full">
+
+                <div>
+                    <p id="friends-count" class="text-lg font-bold">0</p>
+                    <p class="text-xs text-secondaryText">Friends</p>
+                </div>
+
+                <div>
+                    <p id="badges-count" class="text-lg font-bold">0</p>
+                    <p class="text-xs text-secondaryText">Badges</p>
+                </div>
+
+                <div>
+                    <p id="streak-count" class="text-lg font-bold">0</p>
+                    <p class="text-xs text-secondaryText">Day Streak</p>
+                </div>
+
+            </div>
+
+
+            <!-- XP and Score -->
+            <div class="w-full mt-6 space-y-3">
+
+                <div class="flex justify-between text-sm">
+                    <span class="text-secondaryText">XP</span>
+                    <span id="profile-xp" class="font-semibold">0</span>
+                </div>
+
+                <div class="flex justify-between text-sm">
+                    <span class="text-secondaryText">Score</span>
+                    <span id="profile-score" class="font-semibold">0</span>
+                </div>
+
+                <div class="flex justify-between text-sm">
+                    <span class="text-secondaryText">Code Runs</span>
+                    <span id="profile-code-runs" class="font-semibold">0</span>
+                </div>
+
+            </div>
+
         </section>
 
-        </main>
-        <img src="doro.webp" class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-events-none" alt="mascot" />
-    
-    
-    </body>
-    </html>
 
+        <!-- Right content -->
+        <section class="md:col-span-2 bg-card border border-border rounded-2xl p-6">
+
+            <div class="flex flex-wrap items-center gap-3 text-base border-b border-border pb-4 mb-6">
+
+                <span class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">
+                    Overview
+                </span>
+
+
+                <details class="group relative">
+
+                    <summary class="list-none cursor-pointer text-secondaryText hover:bg-bg hover:text-mainText px-5 py-3 rounded-full">
+                        Badges
+                    </summary>
+
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border bg-[#EDF3F0] p-5 text-left shadow-lg z-50">
+
+                        <h3 class="font-semibold mb-4">
+                            Your badges
+                        </h3>
+
+                        <ul id="badge-list" class="space-y-2">
+
+                            <li class="text-sm text-secondaryText">
+                                Loading badges...
+                            </li>
+
+                        </ul>
+
+                        <a href="badges.html"
+                           class="inline-block mt-3 rounded-lg bg-primarybutton px-4 py-2 text-sm text-white hover:bg-buttonHover">
+                            View all
+                        </a>
+
+                    </div>
+                </details>
+
+
+                <details class="group relative">
+
+                    <summary class="list-none cursor-pointer text-center px-5 py-3 rounded-full">
+
+                        <span id="friends-count-tab" class="block text-lg font-bold">
+                            0
+                        </span>
+
+                        <span class="block text-xs text-secondaryText">
+                            Friends
+                        </span>
+
+                    </summary>
+
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border bg-[#EDF3F0] p-5 text-left shadow-lg z-50">
+
+                        <h3 class="font-semibold mb-4">
+                            Your friends
+                        </h3>
+
+                        <p class="text-sm text-secondaryText">
+                            Open the Friends page to manage your friends.
+                        </p>
+
+                        <a href="friends.html"
+                           class="inline-block mt-3 rounded-lg bg-primarybutton px-4 py-2 text-sm text-white hover:bg-buttonHover">
+                            Open Friends
+                        </a>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+
+            <!-- Recent Activity -->
+            <h2 class="font-semibold mb-4">
+                Recent Activity
+            </h2>
+
+            <div class="space-y-3 mb-8">
+
+                <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
+                    <span class="text-sm">
+                        Total coding runs
+                    </span>
+
+                    <span id="activity-code-runs" class="text-xs text-secondaryText">
+                        0
+                    </span>
+                </div>
+
+
+                <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
+                    <span class="text-sm">
+                        Errors solved
+                    </span>
+
+                    <span id="activity-errors" class="text-xs text-secondaryText">
+                        0
+                    </span>
+                </div>
+
+
+                <div class="flex items-center justify-between bg-bg border border-border rounded-lg px-4 py-3">
+                    <span class="text-sm">
+                        Coding streak
+                    </span>
+
+                    <span id="activity-streak" class="text-xs text-secondaryText">
+                        0 days
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Your Badges -->
+            <h2 id="your-badges" class="font-semibold mb-4 scroll-mt-6">
+                Your Badges
+            </h2>
+
+            <div id="your-badges-container" class="flex gap-4 flex-wrap">
+
+                <div class="text-sm text-secondaryText">
+                    Loading badges...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <img
+        src="doro.webp"
+        class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-events-none"
+        alt="mascot"
+    />
+
+
+    <script src="profile.js"></script>
+
+</body>
+</html>
