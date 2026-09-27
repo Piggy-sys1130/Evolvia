@@ -2,7 +2,7 @@
 // EVOLVIA BACKEND URL
 // ========================================
 
-const API_BASE_URL = "https://Bhavishyajoshi07.pythonanywhere.com/api/login";
+const API_BASE_URL = "https://Bhavishyajoshi07.pythonanywhere.com";
 
 
 // ========================================
@@ -225,7 +225,7 @@ form.addEventListener("submit", async function (event) {
             );
 
             // Dashboard ready hone ke baad:
-            // window.location.href = "dashboard.html";
+             window.location.href = "dashboard.html";
 
         }
 

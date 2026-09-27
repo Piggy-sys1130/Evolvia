@@ -20,7 +20,7 @@ const form= document.getElementById("signupForm");
 const submitBtn = form.querySelector(".submit");
 
 //yahan backend API ka url lagega
-const API_URL = "POST https://Bhavishyajoshi07.pythonanywhere.com/api/signup"; //here API url
+const API_BASE_URL = "https://Bhavishyajoshi07.pythonanywhere.com";
 
 form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -68,6 +68,7 @@ form.addEventListener("submit", function(e){
         passwordError.textContent= "Password must be at least 6 characters";
         isValid= false;
     }
+
     //confirm pasword check
     if(confirm == ""){
         confirmError.textContent = "Please confirm your password";
@@ -88,23 +89,25 @@ form.addEventListener("submit", function(e){
 });
 
 //CALL the API to create the account
-function createAccount(username, email,password){
+async function createAccount(username, email,password){
     //button disable kardo jisse user ko lage ki kuch galt hua hai 
     submitBtn.disabled = true;
     submitBtn.textContent= "Creating account...";
 
-    fetch(API_URL, {
-        method: "post",
-        headers:{
-            "content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password
-
-        })
-    })
+    const response = await fetch(
+        `${API_BASE_URL}/api/signup`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password
+            })
+        }
+    )
     .then(function (response){
         return response.json().then(function(data){
             return{status: response.status, body:data};
@@ -120,7 +123,7 @@ function createAccount(username, email,password){
         }
         else{
             // show karega error message jo backend ke tarf se aayega 
-            alert(result.body.message || "Something went wrong, please try again"); 
+            alert(result.body.message || result.body.error || "Something went wrong, please try again"); 
         }
     })
     .catch (function(error){

@@ -222,20 +222,6 @@ body{
     font-size: 13px;
 }
 
-/*Social buttons*/
-.social-login{
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-}
-.social-btn{
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    border: 1px solid #BFCFC6;
-    background: #EDF3F0;
-    color: #29383A;
-}
 /*SIGN UP*/
 .signup-line{
     text-align: center;
@@ -333,26 +319,4 @@ body{
         -webit-box-shado: 0 0 0px 1000px #EDF3F0 inset;
         transition: background-color 5000s ease-in-out 0s;
     }
-    /* Skip Login Button */
-.skip-login-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 65px;
-
-    background: #638874;
-    color: white;
-
-    padding: 12px 20px;
-    border-radius: 10px;
-
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.skip-login-btn:hover {
-    background: #709187;
-    transform: translateY(-2px);
-}
+   
