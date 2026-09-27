@@ -1,36 +1,11 @@
-const mongoose=require("mongoose");
-const activityRecordSchema=new mongoose.Schema(
-    
-    {
-        userId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:true,
-            index:true,
-        },
-        activityType:{
-            type:String,
-            required:true,
-        },
-        referenceId:{
-            type:String,
-            default:null,
-        },
-        activityDate:{
-            type:Date,
-            required:true,
-            default:Date.now,
-        },
-        metadata:{
-            type:mongoose.Schema.Types.Mixed,
-            default:{},
-        },
-    },
-    {
-        timestamps:true,
-    }
-);
+function createActivityRecord(activityType,data={}){
+    return {
+        activityType:activityType,
+        data:data,
+        date:new Date().toISOString()
+    };
+}
 
-module .exports=mongoose.model(
-    "ActivityRecord",
-    activityRecordSchema
-);
+module.exports={
+    createActivityRecord
+};

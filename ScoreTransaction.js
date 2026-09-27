@@ -1,35 +1,18 @@
-const mongoose=require("mongoose");
-const scoreTransactionSchema= new mongoose.Schema(
-   
-   {
-     userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        index:true,                                                                                                                                                                                                                                                                                                                                                                           
-     },
-     scoreAmount:{
-        type:Number,
-        required:true,
-     },
-     activityType:{
-        type:String,
-        required:true,
-     },
-     reason:{
-        type:String,
-        required:true,
-     },
-     referenceId:{
-        type:String,
-        default:null,
-     },
-   },
-   {
-    timestamps:true,
-   }
-);
+function createScoreTransaction(
+   scoreAmount,
+   activitytype,
+   reason,
+   referenceId=null
+){
+   return {
+      scoreAmount:scoreAmount,
+      activityType:activityType,
+      reason:reason,
+      referenceId:referenceId,
+      date:new Date().toISOString()
+   };
+}
 
-module.exports=mongoose.model(
-       "ScoreTransactions",
-       ScoreTransactionSchema
-);    
+module.exports={
+   createScoreTransaction
+};
