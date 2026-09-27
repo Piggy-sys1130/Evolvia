@@ -574,3 +574,282 @@ body{
         grid-template-columns: 1fr 1fr;
     }
 }
+
+/*Dashboard hover effects*/
+/*Navbar*/
+.nav-links a,
+.nav-right a{
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.nav-links a:hover,
+.nav-right a:hover{
+    background: #e1ebe5;
+    transform: translateY(-2px);
+}
+
+.nav-links a:active,
+.nav-right a:active{
+    transform: scale(0.95);
+}
+
+
+/*Signup button*/
+.signup-btn{
+    transition: 0.2s;
+}
+
+.signup-btn:hover{
+    background: #709187;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(49,93,77,0.18);
+}
+
+.signup-btn:active{
+    transform: scale(0.95);
+}
+
+
+/*Profile card*/
+.profile-card{
+    transition: 0.2s;
+}
+
+.profile-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(45,75,63,0.10);
+}
+
+
+/*Profile avatar*/
+.avatar{
+    transition: 0.2s;
+}
+
+.profile-card:hover .avatar{
+    transform: scale(1.05);
+}
+
+
+/*Level*/
+.level{
+    transition: 0.2s;
+}
+
+.level:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(49,93,77,0.15);
+}
+
+
+/*Small statistics*/
+.small-stat{
+    transition: 0.2s;
+}
+
+.small-stat:hover{
+    transform: translateY(-3px);
+    background: #e8f1ec;
+    box-shadow: 0 5px 12px rgba(45,75,63,0.08);
+}
+
+
+/*Welcome banner*/
+.welcome-banner{
+    transition: 0.2s;
+}
+
+.welcome-banner:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(23,70,56,0.12);
+}
+
+
+/*Language cards*/
+.language-card{
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.language-card:hover{
+    background: #f1f7f4;
+    transform: translateY(-4px);
+    border-color: #b9d0c4;
+    box-shadow: 0 7px 15px rgba(45,75,63,0.08);
+}
+
+
+/*Language logo*/
+.language-logo{
+    transition: 0.2s;
+}
+
+.language-card:hover .language-logo{
+    transform: scale(1.05);
+}
+
+
+/*Language button*/
+.language-btn{
+    transition: 0.2s;
+}
+
+.language-btn:hover{
+    background: #709b85;
+    transform: scale(1.05);
+}
+
+.language-btn:active{
+    transform: scale(0.95);
+}
+
+
+/*Progress cards*/
+.progress-card{
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.progress-card:hover{
+    transform: translateY(-3px);
+    background: #f1f7f4;
+    border-color: #b9d0c4;
+    box-shadow: 0 7px 15px rgba(45,75,63,0.08);
+}
+
+
+/*Progress icon*/
+.progress-language-icon{
+    transition: 0.2s;
+}
+
+.progress-card:hover .progress-language-icon{
+    transform: scale(1.05);
+}
+
+
+/*Progress bar*/
+.mini-progress div{
+    transition: width 0.5s ease;
+}
+
+
+/*Stats*/
+.stat-card{
+    border-radius: 9px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.stat-card:hover{
+    transform: translateY(-3px);
+    background: #f1f7f4;
+    border-color: #b9d0c4;
+    box-shadow: 0 7px 15px rgba(45,75,63,0.08);
+}
+
+
+/*Stats icon*/
+.stat-card > span{
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.stat-card:hover > span{
+    transform: scale(1.05);
+}
+
+
+/*Section links*/
+.section-title a{
+    transition: 0.2s;
+}
+
+.section-title a:hover{
+    color: #315d4d;
+    transform: translateY(-2px);
+}
+
+
+/*Leaderboard buttons*/
+.leaderboard-tabs button{
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.leaderboard-tabs button:hover{
+    background: #d5e5dd;
+    transform: translateY(-1px);
+}
+
+.leaderboard-tabs button:active{
+    transform: scale(0.95);
+}
+
+
+/*Leaderboard rows*/
+.leader-row{
+    transition: 0.2s;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.leader-row:hover{
+    background: #f0f6f3;
+    transform: translateX(3px);
+    border-radius: 7px;
+}
+
+
+/*User avatar*/
+.user-avatar{
+    transition: 0.2s;
+}
+
+.leader-row:hover .user-avatar{
+    transform: scale(1.05);
+}
+
+
+/*Current user*/
+.current-user{
+    transition: 0.2s;
+}
+
+.current-user:hover{
+    background: #dcebe4;
+    transform: translateY(-2px);
+}
+
+
+/*Quote*/
+.quote-box{
+    transition: 0.2s;
+}
+
+.quote-box:hover{
+    transform: translateY(-2px);
+    background: #e8f2ed;
+}
+
+
+/*Buttons*/
+button{
+    transition: 0.2s;
+}
+
+button:active{
+    transform: scale(0.95);
+}
+
+
+/*Mountain*/
+.mountain-box{
+    transition: 0.2s;
+}
+
+.mountain-box:hover{
+    transform: translateY(-2px);
+}
+
