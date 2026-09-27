@@ -1,3 +1,4 @@
+const API_URL="https://Bhavishyajoshi07.pythonanywhere.com";
 const BADGES=[
     {
         id:"beginner",
