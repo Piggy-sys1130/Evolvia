@@ -20,7 +20,7 @@ const form= document.getElementById("signupForm");
 const submitBtn = form.querySelector(".submit");
 
 //yahan backend API ka url lagega
-const API_URL = ""; //here API url
+const API_URL = "POST https://Bhavishyajoshi07.pythonanywhere.com/api/signup"; //here API url
 
 form.addEventListener("submit", function(e){
     e.preventDefault();

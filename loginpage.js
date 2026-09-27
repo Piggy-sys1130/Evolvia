@@ -1,74 +1,89 @@
-const form = document.getElementById('field');
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
+// ========================================
+// EVOLVIA BACKEND URL
+// ========================================
 
-const usernameError = document.getElementById('username-error');
-const passwordError = document.getElementById('password-error');
-
-const formError = document.getElementById('form-error');
-const togglePassword = document.getElementById('toggle-password');
-const forgotPassword = document.getElementById('forgot-password');
-const signupLink = document.getElementById('signup-link');
+const API_BASE_URL = "https://Bhavishyajoshi07.pythonanywhere.com/api/login";
 
 
-// ==================================================
+// ========================================
+// ELEMENTS
+// ========================================
+
+const form = document.getElementById("field");
+
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+
+const usernameError = document.getElementById("username-error");
+const passwordError = document.getElementById("password-error");
+
+const formError = document.getElementById("form-error");
+
+const togglePassword = document.getElementById("toggle-password");
+const forgotPassword = document.getElementById("forgot-password");
+const signupLink = document.getElementById("signup-link");
+
+
+// ========================================
 // SHOW / HIDE PASSWORD
-// ==================================================
+// ========================================
 
-togglePassword.addEventListener('click', function () {
+togglePassword.addEventListener("click", function () {
 
-    if (passwordInput.type === 'password') {
+    if (passwordInput.type === "password") {
 
-        passwordInput.type = 'text';
-        togglePassword.textContent = '🙈';
+        passwordInput.type = "text";
+
+        togglePassword.textContent = "🙈";
 
         togglePassword.setAttribute(
-            'aria-label',
-            'Hide password'
+            "aria-label",
+            "Hide password"
         );
 
         togglePassword.setAttribute(
-            'aria-pressed',
-            'true'
+            "aria-pressed",
+            "true"
         );
 
     } else {
 
-        passwordInput.type = 'password';
-        togglePassword.textContent = '👁️';
+        passwordInput.type = "password";
+
+        togglePassword.textContent = "👁️";
 
         togglePassword.setAttribute(
-            'aria-label',
-            'Show password'
+            "aria-label",
+            "Show password"
         );
 
         togglePassword.setAttribute(
-            'aria-pressed',
-            'false'
+            "aria-pressed",
+            "false"
         );
     }
 });
 
 
-// ==================================================
+// ========================================
 // CLEAR ERRORS
-// ==================================================
+// ========================================
 
 function clearErrors() {
 
-    usernameError.textContent = '';
-    passwordError.textContent = '';
-    formError.textContent = '';
+    usernameError.textContent = "";
+    passwordError.textContent = "";
+    formError.textContent = "";
 
-    usernameError.classList.remove('visible');
-    passwordError.classList.remove('visible');
-    formError.classList.remove('visible');
+    usernameError.classList.remove("visible");
+    passwordError.classList.remove("visible");
+    formError.classList.remove("visible");
 }
 
 
-// ==================================================
-// VALIDATE LOGIN FORM
-// ==================================================
+// ========================================
+// VALIDATION
+// ========================================
 
 function validateForm() {
 
@@ -76,38 +91,34 @@ function validateForm() {
 
     clearErrors();
 
-    // Username validation
     const username = usernameInput.value.trim();
+    const password = passwordInput.value;
 
-    if (username === '') {
+    if (username === "") {
 
         usernameError.textContent =
-            'Please enter your username or email.';
+            "Please enter your username or email.";
 
-        usernameError.classList.add('visible');
+        usernameError.classList.add("visible");
 
         isValid = false;
     }
 
-
-    // Password validation
-    const password = passwordInput.value;
-
-    if (password === '') {
+    if (password === "") {
 
         passwordError.textContent =
-            'Please enter your password.';
+            "Please enter your password.";
 
-        passwordError.classList.add('visible');
+        passwordError.classList.add("visible");
 
         isValid = false;
 
     } else if (password.length < 6) {
 
         passwordError.textContent =
-            'Password must be at least 6 characters.';
+            "Password must be at least 6 characters.";
 
-        passwordError.classList.add('visible');
+        passwordError.classList.add("visible");
 
         isValid = false;
     }
@@ -116,38 +127,39 @@ function validateForm() {
 }
 
 
-// ==================================================
-// LOGIN + BACKEND API
-// ==================================================
+// ========================================
+// LOGIN
+// ========================================
 
-form.addEventListener('submit', async function (event) {
+form.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
-    // Validate form
     if (!validateForm()) {
         return;
     }
 
-
-    // Get username and password
     const username = usernameInput.value.trim();
     const password = passwordInput.value;
 
-
-    // Clear previous form error
-    formError.textContent = '';
-    formError.classList.remove('visible');
-
+    formError.textContent = "";
+    formError.classList.remove("visible");
 
     try {
 
-        // Connect to Flask backend
-        const response = await fetch('https://feline-comrade-stride.ngrok-free.dev/api/login', {
-                method: 'POST',
+        console.log("Sending login request...");
+        console.log(
+            "API URL:",
+            `${API_BASE_URL}/api/login`
+        );
+
+        const response = await fetch(
+            `${API_BASE_URL}/api/login`,
+            {
+                method: "POST",
 
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
 
                 body: JSON.stringify({
@@ -157,163 +169,173 @@ form.addEventListener('submit', async function (event) {
             }
         );
 
+        // Check whether server returned JSON
+        const contentType =
+            response.headers.get("content-type") || "";
 
-        const data = await response.json();
+        let data;
 
+        if (contentType.includes("application/json")) {
 
-        // ==================================================
-        // LOGIN SUCCESS
-        // ==================================================
+            data = await response.json();
 
-        if (response.ok) {
+        } else {
 
-            console.log('Login successful');
-            console.log(data);
+            const text = await response.text();
 
-
-            // Save JWT token
-            localStorage.setItem(
-                'token',
-                data.token
+            console.error(
+                "Server returned non-JSON:",
+                text
             );
 
-
-            // Save user information
-            localStorage.setItem(
-                'user',
-                JSON.stringify(data.user)
+            throw new Error(
+                `Server returned ${response.status} instead of JSON.`
             );
-
-
-            formError.textContent =
-                'Login successful!';
-
-            formError.classList.add('visible');
-
-
-            console.log(
-                'Token saved successfully'
-            );
-
-            console.log(
-                'Logged in user:',
-                data.user
-            );
-
-
-            // Dashboard redirect
-            // Abhi dashboard file ka exact naam confirm nahi hai,
-            // isliye ise baad me enable karenge.
-
-            // window.location.href = 'dashboard.html';
         }
 
 
-        // ==================================================
+        // ========================================
+        // SUCCESS
+        // ========================================
+
+        if (response.ok) {
+
+            console.log("Login successful!");
+            console.log("User:", data.user);
+
+            // Save JWT
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+            // Save user
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+
+            formError.textContent =
+                "Login successful!";
+
+            formError.classList.add("visible");
+
+            console.log(
+                "Token saved successfully."
+            );
+
+            // Dashboard ready hone ke baad:
+            // window.location.href = "dashboard.html";
+
+        }
+
+
+        // ========================================
         // LOGIN FAILED
-        // ==================================================
+        // ========================================
 
         else {
 
             formError.textContent =
                 data.error ||
-                'Invalid username or password';
+                "Invalid username or password.";
 
-            formError.classList.add('visible');
+            formError.classList.add("visible");
         }
 
     }
 
 
-    // ==================================================
-    // BACKEND CONNECTION ERROR
-    // ==================================================
+    // ========================================
+    // NETWORK / SERVER ERROR
+    // ========================================
 
     catch (error) {
 
         console.error(
-            'API Error:',
+            "API Error:",
             error
         );
 
+        console.error(
+            "API URL:",
+            `${API_BASE_URL}/api/login`
+        );
+
         formError.textContent =
-            'Unable to connect to the server. Make sure the backend is running.';
+            error.message ||
+            "Unable to connect to the server.";
 
-        formError.classList.add('visible');
+        formError.classList.add("visible");
     }
-
 });
 
 
-// ==================================================
-// REMOVE USERNAME ERROR WHILE TYPING
-// ==================================================
+// ========================================
+// REMOVE USERNAME ERROR
+// ========================================
 
 usernameInput.addEventListener(
-    'input',
+    "input",
     function () {
 
-        usernameError.textContent = '';
+        usernameError.textContent = "";
 
         usernameError.classList.remove(
-            'visible'
+            "visible"
         );
     }
 );
 
 
-// ==================================================
-// REMOVE PASSWORD ERROR WHILE TYPING
-// ==================================================
+// ========================================
+// REMOVE PASSWORD ERROR
+// ========================================
 
 passwordInput.addEventListener(
-    'input',
+    "input",
     function () {
 
-        passwordError.textContent = '';
+        passwordError.textContent = "";
 
         passwordError.classList.remove(
-            'visible'
+            "visible"
         );
     }
 );
 
 
-// ==================================================
+// ========================================
 // FORGOT PASSWORD
-// ==================================================
+// ========================================
 
 forgotPassword.addEventListener(
-    'click',
+    "click",
     function (event) {
 
         event.preventDefault();
 
         formError.textContent =
-            'Password recovery will be added later.';
+            "Password recovery will be added later.";
 
-        formError.classList.add(
-            'visible'
-        );
+        formError.classList.add("visible");
     }
 );
 
 
-// ==================================================
+// ========================================
 // SIGN UP
-// ==================================================
+// ========================================
 
 signupLink.addEventListener(
-    'click',
+    "click",
     function (event) {
 
         event.preventDefault();
 
         formError.textContent =
-            'Sign-up page will be added later.';
+            "Sign-up page will be added later.";
 
-        formError.classList.add(
-            'visible'
-        );
+        formError.classList.add("visible");
     }
 );
