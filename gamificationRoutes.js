@@ -1,21 +1,22 @@
-const express = require("express");
-const {
-     processUserActivity
-} = require("../controllers/gamificationController");
+const express=require("express");
 
-const router = express.Router();
+const{
+    processUserActivity
+}=require("../controllers/gamificationController");
 
+const router =express.Router();
 router.post("/activity",(req,res)=>{
     try{
         const{userId,activityType}=req.body;
 
-        if(!userId || !activityType){
+        if(!userId||!activityType){
             return res.status(400).json({
-                succes:false,
+                success:false,
                 message:"userId and activityType are required"
             });
         }
-        const result = processUserActivity(
+
+        const result =processUserActivity(
             userId,
             activityType
         );
@@ -23,15 +24,15 @@ router.post("/activity",(req,res)=>{
             success:true,
             data:result
         });
-    } catch (error){
+    }catch(error){
         res.status(500).json({
             success:false,
             message:error.message
         });
     }
-});    
+});
 
-    
+module.exports=router;
 
 
 
