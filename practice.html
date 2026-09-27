@@ -111,5 +111,36 @@
                     </main>
                     <img src="doro.webp" class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-events-none" alt="mascot" />
 
+                    <script>
+                        let selectedLanguage = "Python";
+                        function selectLanguage(language) { 
+                       selectedLanguage = language;
+                            document.getElementById("currentLanguage").textContent = language;
+                            const buttons = document.querySelectorAll("aside button");
+                            buttons.forEach(button => {
+                                button.className = "w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95";
+                            });
+                        }
+
+                        function runCode() {
+                            const output = document.getElementById("output");
+                            const code = document.getElementById("codeEditor").value.trim();
+
+                            if (!code) {
+                                output.innerHTML = '<span class="text-[#78909C]">/&gt;</span>';
+                                return;
+                            }
+
+                            output.innerHTML = '<span class="text-[#C5D3D8]">' + code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</span>';
+                        }
+
+                        function copyOutput() {
+                            const output = document.getElementById("output").innerText.trim();
+                            if (!output || output === "/>" || output === "/&gt;") return;
+
+                            navigator.clipboard.writeText(output).catch(() => {});
+                        }
+                    </script>
+
                 </body>
                 </html>
