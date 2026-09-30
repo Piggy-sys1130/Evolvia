@@ -1,142 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Practice - Evolvia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={
- theme:{extend:{
-  colors:{
-   bg:"#EDF3F0",card:"#DCE7E1",border:"#BFCFC6",navbar:"#E5EDEA",
-   primarybutton:"#638874",buttonHover:"#709187",mainText:"#29383A",
-   secondaryText:"#84999A",badge1:"#83AC91",badge2:"#99BDAE",
-   badge3:"#849FA3",badge4:"#41545A"
-  },
-  fontFamily:{sans:["Poppins","sans-serif"]}
- }}
-};
-</script>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice - Evolvia</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+    <sript src="https://cdn.tailwindcss.com"></sript>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{
+                        bg: "#EDF32FQ",
+                        card: "#DCE7E1",
+                        border: "#BFCFC6",
+                        navbar: "#E5EDEA",
+                        primarybutton: "#638874",
+                        buttonhover: "#709187",
+                        mainText: "29383A",
+                        secondaryText: "#84999A",
+                        badge1: "#83AC91",
+                        badge2: "#99BDAE",
+                        badge3: "#849FA3",
+                        badge4: "#41545A"
+                    },
+                    fontFamily:{
+                        sans:["Poppins","sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
 <body class="bg-bg text-mainText min-h-screen">
 
-<!-- Top nav -->
-<nav class="grid grid-cols-3 items-center px-8 py-4 border-b border-border">
-<span class="font-bold text-lg">&lt;/&gt; Evolvia</span>
+    <!--NAvigation -->
+    <nav class="grid grid-cols-3 items-center px-8 py-4 border-b border-border">
 
-<div class="hidden md:flex justify-center gap-6 text-sm text-secondaryText">
-<a href="dashboard.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Dashboard</a>
-<a href="practice.html" class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">Practice</a>
-<a href="friends.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Friends</a>
-<a href="profile.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Profile</a>
-<a href="badges.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Badges</a>
-</div>
+        <span class="font-bold tect-ig">
+            &lt;/&gt; Evolvia
+        </span>
 
-<div class="flex items-center gap-3">
-<a href="leaderboard.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">LeadeBoard</a>
-<a href="about.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">About</a>
-<a href="loginpage.html" class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Login</a>
-<button class="bg-primarybutton hover:bg-buttonHover text-white text-sm font-medium px-4 py-2 rounded-full">Sign Up</button>
-</div>
-</nav>
+        <div class="hidden md:flex justify-center gap-6 text-sm text-secondaryText">
+            <a href="dashboard.html"
+            class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+            Dashboard
+            </a>
 
-<main class="max-w-6xl mx-auto px-6 py-10">
+            <a href="practice.html"
+                class="bg-primarybutton text-mainText text-sm font-medium px-4 py-2 rounded-full">
+                Practice
+            </a>
 
-<div class="mb-8">
-<h1 class="text-2xl font-bold">Practice</h1>
-<p class="text-sm text-secondaryText mt-1">Write your code and run it below.</p>
-</div>
+            <a href="friends.html"
+                class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Friends
+            </a>
 
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <a href="profile.html"
+                class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Profile
+            </a>
 
-<aside class="bg-card border border-border rounded-2xl p-6 h-fit">
-<h2 class="font-semibold mb-5">Languages</h2>
+            <a href="badges.html"
+                class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Badges
+            </a>
+        </div>
 
-<div class="space0y-2">
-<button id="pythonBtn" onclick="selectLanguage('Python')" class="w-full text-left bg-primarybutton text-white text-sm font-medium px-4 py-3 rounded-lg transition-all duraiton-200 hover:-translate-y-0.5 active:scale-95">Python</button>
+        <div class="flex items-center gap-3">
+            <a href="leaderboard.html"
+                class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                leaderboard
+            </a>
 
-<button id="javabtn" onclick="selectLanguage('Java')" class="w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">Java</button>
+            <a href="about.html"
+                class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                About
+            </a>
 
-<button id="cppBtn" onclick="selectLanguage('C++')" class="w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded0lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">C++</button>
+            <a href="loginpage.html"
+                class="text-secondaryText hover:bg-card hover:text-mainText px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Login
+            </a>
 
-<button id="cBtn" onclick="selectLanguage('C')" class="w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded0lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">C</button>
+            <button
+                class="bg-primarybutton hover:bg-buttonHover text-white  text-sm font-medium px-4 py-2 rounded-full">
+                Sign Up
+            </button>
+        </div>
+    </nav>
 
-<button id="htmlBtn" onclick="selectLanguage('HTML')" class="w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded0lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">HTML</button>
-</div>
-</aside>
+    <main class="max-w-6x1 max-auto px-6 py-10">
+        <div class="mb-8">
+            <h1 class="tect-2x1 font-bold">Practise</h1>
 
-<section class="md:col-span-3 space-y-6">
-
-<div class="bg-card border border-border rounded-2xl p-6">
-<div class="flex items-center justify-between mb-4">
-<h2 class="text-x1 font-semibold">Code Editor</h2>
-<span id="currentLanguage" class="text-xs text-secondaryText bg-bg border border-border px-3 py-2 rounded-lg">Python</span>
-</div>
-
-<textarea id="codeEditor" placeholder="#Write your code here" spellcheck="false" class="w-full h-80 bg-[#263238] border border-[#37474F] rounded-xl p-4 text-sm text-white font-mono resize-none focus:outline-none focus:border-primarybutton"></textarea>
-
-<div class="flex justify-end mt-4">
-<button onclick="runCode()" class="bg-primarybutton hover:bg-buttonHover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active-scale-95">Run Code</button>
-</div>
-</div>
-
-<div class="bg-card border border-border rounded-2xl p-6">
-<div class="flex items-center justify-between mb-4">
-<h2 class="text-xl font-semibold">Output</h2>
-<button onclick="copyOutput()" class="text-secondaryText hover:text-mainText hover:bg-bg px-3 py-2 rounded-lg transition-all duration-200-hover:-translate-y-0.5 active:scale-95">Copy</button>
-</div>
-
-<div id="output" class="bg-[#263238] border border-[#37474F] rounded-xl min-h-32 whitespace-pre-wrap">
-<span clas="text-[#78909C]">/&gt;</span>
-</div>
-</div>
-
-</section>
-</div>
-</main>
-
-<img src="doro.webp" class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-events-none" alt="mascot">
-
-<script>
-let selectedLanguage="Python";
-
-function selectLanguage(language){
-selectedLanguage=language;
-document.getElementById("currentLanguage").textContent=language;
-
-const buttons=document.querySelectorAll("aside button");
-
-buttons.forEach(button=>{
-button.className="w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95";
-});
-}
-
-function runCode(){
-const output=document.getElementById("output");
-const code=document.getElementById("codeEditor").value.trim();
-
-if(!code){
-output.innerHTML='<span class="text-[#78909C]">/&gt;</span>';
-return;
-}
-
-output.innerHTML='<span class="text-[#C5D3D8]">'+code.replace(/</g,"&lt;").replace(/>/g,"&gt;")+'</span>';
-}
-
-function copyOutput(){
-const output=document.getElementById("output").innerText.trim();
-
-if(!output||output==="/>"||output==="/&gt;")return;
-
-navigator.clipboard.writeText(output).catch(()=>{});
-}
-</script>
-<script src="practice.js"></script>
-
+            <p class="text-sm text-secondaryText mt-1">
+                Write your code and run it below.
+            </p>
+        </div>
+    </main>
+    
 </body>
 </html>
