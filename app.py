@@ -1,7 +1,7 @@
 import os
 from datetime import timedelta
 
-from flask import Flask
+from flask import Flask,request
 from flask_cors import CORS
 from extensions import db, bcrypt, jwt
 
@@ -12,13 +12,29 @@ from routes.code_routes import code_bp
 from routes.profile_routes import profile_bp
 from routes.friend_routes import friend_bp
 from routes.leaderboard_routes import leaderboard_bp
+from models.password_reset import PasswordResetToken
+from routes.password_routes import password_bp
+from routes.otp_routes import otp_bp
+
 
 
 app = Flask(__name__)
+@app.before_request
+def handle_options():
+     if request.method == "OPTIONS":
+        return "", 200
 
-CORS(app, resources={
-    r"/api/*": {"origins": "*"}
-})
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": "*"
+        }
+    },
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
+    supports_credentials=False
+)
 
 app.config["SECRET_KEY"] = os.environ.get(
     "SECRET_KEY",
@@ -45,6 +61,8 @@ app.register_blueprint(code_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(friend_bp)
 app.register_blueprint(leaderboard_bp)
+app.register_blueprint(password_bp)
+app.register_blueprint(otp_bp)
 
 
 with app.app_context():
