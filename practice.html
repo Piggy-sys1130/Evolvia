@@ -12,19 +12,19 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-    <sript src="https://cdn.tailwindcss.com"></sript>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config={
             theme:{
                 extend:{
                     colors:{
-                        bg: "#EDF32FQ",
+                        bg: "#EDF3F0",
                         card: "#DCE7E1",
                         border: "#BFCFC6",
                         navbar: "#E5EDEA",
                         primarybutton: "#638874",
                         buttonhover: "#709187",
-                        mainText: "29383A",
+                        mainText: "#29383A",
                         secondaryText: "#84999A",
                         badge1: "#83AC91",
                         badge2: "#99BDAE",
@@ -44,7 +44,7 @@
     <!--NAvigation -->
     <nav class="grid grid-cols-3 items-center px-8 py-4 border-b border-border">
 
-        <span class="font-bold tect-ig">
+        <span class="font-bold text-lg">
             &lt;/&gt; Evolvia
         </span>
 
@@ -98,9 +98,9 @@
         </div>
     </nav>
 
-    <main class="max-w-6x1 max-auto px-6 py-10">
+    <main class="max-w-6xl mx-auto px-6 py-10">
         <div class="mb-8">
-            <h1 class="tect-2x1 font-bold">Practise</h1>
+            <h1 class="text-2xl font-bold">Practise</h1>
 
             <p class="text-sm text-secondaryText mt-1">
                 Write your code and run it below.
@@ -109,7 +109,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
             <!--LAnguage selection-->
-            <aside class="bg-card border border-border rounded-2x1 p-6 h-fit">
+            <aside class="bg-card border border-border rounded-2xl p-6 h-fit">
                 <h2 class="font-semibold mb-5">
                     Languages
                 </h2>
@@ -155,16 +155,16 @@
             </aside>
 
             <!--Editor and output-->
-            <selection class="md:col-span-3 space-y-6">
-                <div  class="bg-card border border-border rounded-2x1 p-6">
+            <section class="md:col-span-3 space-y-6">
+                <div  class="bg-card border border-border rounded-2xl p-6">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-x1 font-semibold">
+                        <h2 class="text-xl font-semibold">
                             Code Editor
                         </h2>
 
                         <span
                             id="currentLanguage"
-                            class="text-xs text-secondaryText bg-bg border-border px-3 py-2 rounded-lg">
+                            class="text-xs text-secondaryText bg-bg border border-border px-3 py-2 rounded-lg">
                             Python
                         </span>
 
@@ -186,9 +186,9 @@
                 </div>
 
                 <!--OUTPUT BOX-->
-                <div class="bg-card border border-border rounded-2x1 p-6">
+                <div class="bg-card border border-border rounded-2xl p-6">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-x1 font-semibold">
+                        <h2 class="text-xl font-semibold">
                             Output
                         </h2>
 
@@ -209,12 +209,12 @@
 
                 </div>
 
-            </selection>            
+            </section>            
         </div>
     </main>
 
     <img src="doro.webp"
-    class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-event-none"
+    class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-events-none"
     alt="mascot">
     <script>
         const API_BASE_URL = "https://Bhavishyajoshi07.pythonanywhere.com";
@@ -257,12 +257,12 @@
                 editor.placeholder = "// Write your C code here";
             }
             else if(language ==="HTML"){
-                editor.placeholder = "// Write your HTML code here -->";
+                editor.placeholder = "<!-- Write your HTML code here -->";
             }
         }
 
-        async function runcode(){
-            const token = localStorage.getItem("token");
+        async function runCode(){
+               const token = localStorage.getItem("token");
 
             if(!token){
                 window.location.href = "loginpage.html";
@@ -275,7 +275,7 @@
 
             const code = editor.value.trim();
             if(!code){
-                output.innerHTML ='<span claass="text-[#78909C]">Please write some code first.</span>';
+                output.innerHTML ='<span class="text-[#78909C]">Please write some code first.</span>';
                 return;
             }
             runButton.disabled = true;
@@ -291,7 +291,7 @@
                     {
                         method: "POST",
                         headers: {
-                            "content-Type": "application/json",
+                            "Content-Type": "application/json",
                             "Authorization": `Bearer ${token}`
                         },
                         body: JSON.stringify({
@@ -303,7 +303,7 @@
                 const contentType= response.headers.get("content-type") || "";
 
                 let data;
-                if(contentType.include("application/json")){
+                if(contentType.includes("application/json")){
                     data= await response.json();
                 }else{
                     const text = await response.text();
@@ -323,8 +323,79 @@
                     window.location.href = "loginpage.html";
                     return;
                 }
+
+                if(!response.ok){
+                    output.innerHTML= `<span class = "text-red-400">${escapeHtml(
+                        data.error ||
+                        data.message ||
+                        "Code execution failed."
+                        )}</span>`;
+                        return; 
+                }
+                let resultText ="";
+                if(data.stdout){
+                    resultText += data.stdout;
+                }
+                if (data.stderr){
+                    if(resultText){
+                        resultText +="\n"
+                    }
+
+                    resultText += data.stderr;
+                }
+                if(!resultText && data.output){
+                    resultText = data.output;
+                }
+                if(!resultText && data.message){
+                    resultText = data.message;
+                }
+                if(!resultText){
+                    resultText= "Code executes successfully.";
+                }
+            
+                output.innerHTML = escapeHtml(resultText);
             }
+            catch(error){
+                console.error(
+                    "Code execution error:",
+                    error
+            );
+            output.innerHTML= `<span class ="text-red-400">${escapeHtml(
+                    error.message ||
+                    "Unable to connect the server."
+                )}</span>`;
+            }
+            finally{
+                runButton.disabled = false;
+                runButton.textContent = "Run Code";
+            } 
         }
+        
+            function escapeHtml(text){
+                const div = document.createElement("div");
+                div.textContent = String(text);
+                return div.innerHTML;
+            }
+            function copyOutput(){
+                const output =
+                    document.getElementById("output").innerText.trim();
+                if(!output){
+                    return;
+                }
+                navigator.clipboard
+                    .writeText(output)
+                    .then(function(){
+                        console.log("Output copied.");
+                    })
+                    .catch(function(error){
+                        console.error(
+                            "Copy failed:",
+                            error
+                        );
+                    });
+
+        }
+        
 
     </script>
     
