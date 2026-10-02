@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from extensions import db
 from models.user import User
 from models.friendship import Friendship
+from services.notification_service import create_notification
 
 
 friend_bp = Blueprint("friend", __name__)
@@ -92,6 +93,13 @@ def send_friend_request():
     db.session.add(friendship)
     db.session.commit()
 
+    create_notification(
+        receiver.id,
+        "New Friend request",
+        f"{User.query.get(user_id).username} sent you a friend request.",
+        "friend_request"
+    )
+
     return jsonify({
         "success": True,
         "message": "Friend request sent",
@@ -156,6 +164,13 @@ def accept_friend_request(request_id):
     friendship.status = "accepted"
 
     db.session.commit()
+
+    create_notification(
+        friendship.sender_id ,
+        "Friend Request Accepted",
+        f"{User.query.get(user_id).username} accepted your friend request.",
+        "friend_request_accepted"
+    )
 
     return jsonify({
         "success": True,

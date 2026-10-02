@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+from extensions import db
+from models.notification import Notification
 
 
 # ---------------- XP REWARDS ----------------
@@ -109,15 +111,24 @@ def add_xp(stats, amount):
 # ==================================================
 
 def update_level(stats):
+    old_level = stats.level
 
-    for required_xp, level in LEVEL_THRESHOLDS:
-
+    for required_xp , level in LEVEL_THRESHOLDS:
         if stats.total_xp >= required_xp:
             stats.level = level
             break
 
-    return stats.level
+        if stats.level > old_level:
+            notification = Notification(
+                user_id =stats.user_id,
+                title = "Level Up!",
+                message = f"You reached Level {stats.level}.",
+                notification_type = "level_up"
+            )
 
+            db.session.add(notification)
+
+    return stats.level
 
 # ==================================================
 # XP BADGES
@@ -133,6 +144,21 @@ def get_xp_badges(stats):
             badges.append(badge_name)
 
     return badges
+
+def check_badge_unlock(stats, old_xp):
+
+    for required_xp, badge_name in XP_BADGES:
+
+        if old_xp < required_xp <= stats.total_xp:
+
+            notification = Notification(
+                user_id=stats.user_id,
+                title="Badge Unlocked!",
+                message=f'You unlocked the "{badge_name}" badge.',
+                notification_type="badge_unlock"
+            )
+
+            db.session.add(notification)
 
 
 # ==================================================
@@ -198,7 +224,7 @@ def get_effective_streak(stats):
     return stats.current_streak
 
 
-def build_summary(stats, xp_before,score_before):
+def build_summary(stats, xp_before, score_before):
     """Har process_* function ka response ek jaisa rakhne ke liye."""
 
     daily_xp = get_effective_daily_xp(stats)
@@ -289,6 +315,7 @@ def process_code_run(stats, accepted=False):
 
     # Level update
     update_level(stats)
+    check_badge_unlock(stats,xp_before)
 
     return build_summary(stats, xp_before,score_before)
 
@@ -313,6 +340,8 @@ def process_error_solved(stats):
 
     update_level(stats)
 
+    check_badge_unlock(stats,xp_before)
+
     return build_summary(stats, xp_before,score_before)
 
 
@@ -333,5 +362,7 @@ def process_time_challenge(stats):
     stats.total_score += 10
 
     update_level(stats)
+
+    check_badge_unlock(stats,xp_before)
 
     return build_summary(stats, xp_before,score_before)
