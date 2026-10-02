@@ -56,4 +56,88 @@ async function runCode(){
     runButton.disabled= true;
     runButton.textContent = "Running...";
     output.textContent= "Running Code...";
+
+    try{
+        const response = await fetch(
+             `${API_BASE_URL}/api/code/run`,
+             {
+                method: "POST",
+
+                headers:{
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    language: languageMap[selectedLanguage],
+                    code: code
+                })
+             }
+        );
+        const data = await response.json();
+        if(response.status === 401){
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            Window.location.href= "loginpage.html";
+            return;
+        }
+        if(!response.ok){
+            output.textcontent =
+                data.error ||
+                data.message ||
+                "Something went wrong.";
+
+                return;
+        }
+        if(data.stdout){
+            output.textContent= data.stdout;
+
+        }
+        else if(data.stderr){
+            output.textContent = data.stderr;
+        }
+        else if(data.output){
+            output.textContent = data.output;
+        }
+        else if(data.message){
+            output.textContent = data.message;
+        }
+        else{
+            output.textContent = "code executed successfully,";
+        }
+    }
+    catch(error){
+        console.error(error);
+        output.textContent ="Unable to connect to the server.";
+
+    }
+    finally{
+        runButton.disabled = false;
+        runButton.textContent="Run Code";
+    }
+}
+
+async function copyOutput(){
+    const output = document.getElementById("output");
+
+    if(!output)return;
+
+    try{
+        await navigator.clipboard.writeText(
+            output.textContent
+        );
+
+        const copyButton = document.getElementById("copyOutput");
+        if(copyOutput){
+            const oldText = copyButton.textcontent;
+
+            setTimeout(() =>{
+                copyButton.textContent = oldText;
+            },1500);
+        }
+    }
+    catch (error){
+
+        console.error(error);
+    }
 }
