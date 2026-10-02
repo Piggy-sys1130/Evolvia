@@ -2,17 +2,19 @@ from extensions import db
 from datetime import datetime
 
 class Notification(db.Model):
-    id = db.Column(db.Integer,primary_key=True)
+    id = db.Column(
+        db.Integer,
+        primary_key = True
+    )
+
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey("user.id"),
-        nullable=False
+        primary_key=True
     )
 
     title = db.Column(
-        db.Ineger,
-        db.ForeignKey("user.id"),
-        nullable=False
+        db.String(150),
+        nullable = False
     )
 
     message = db.Column(
@@ -27,7 +29,7 @@ class Notification(db.Model):
 
     is_read = db.Column(
         db.Boolean,
-        default= False
+        default = False
     )
 
     created_at = db.Column(
