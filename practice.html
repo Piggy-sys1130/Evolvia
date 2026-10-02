@@ -105,8 +105,228 @@
             <p class="text-sm text-secondaryText mt-1">
                 Write your code and run it below.
             </p>
+        </div>  
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+            <!--LAnguage selection-->
+            <aside class="bg-card border border-border rounded-2x1 p-6 h-fit">
+                <h2 class="font-semibold mb-5">
+                    Languages
+                </h2>
+
+                <div class="space-y-2">
+                    <button
+                    id="pythonBtn"
+                    onclick="selectLanguage('Python')"
+                    class="language-button w-full text-left bg-primarybutton text-white text-sm font-medium px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                    Python
+                    </button>
+
+                    <button 
+                        id="javaBtn"
+                        onclick="selectLanguage('Java')"
+                        class="language-button w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                        Java
+                    </button>
+
+                    <button 
+                        id="cppBtn"
+                        onclick="selectLanguage('C++')"
+                        class="language-button w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                        c++
+                    </button>
+
+                    <button
+                        id="cBtn"
+                        onclick="selectLanguage('C')"
+                        
+                        class="language-button w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                        C
+                    </button>
+
+                    <button
+                        id="htmlBtn"
+                        onclick="selectLanguage('HTML')"
+                        class="language-button w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                        HTML
+                    </button>
+
+                </div>
+            </aside>
+
+            <!--Editor and output-->
+            <selection class="md:col-span-3 space-y-6">
+                <div  class="bg-card border border-border rounded-2x1 p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-x1 font-semibold">
+                            Code Editor
+                        </h2>
+
+                        <span
+                            id="currentLanguage"
+                            class="text-xs text-secondaryText bg-bg border-border px-3 py-2 rounded-lg">
+                            Python
+                        </span>
+
+                    </div>
+                    <textarea 
+                        id="codeEditor"
+                        placeholder="# Write your code here"
+                        spellcheck="false"
+                        class="w-full h-80 bg-[#263238] border border-[#37474F] rounded-xl p-4 text-sm text-white font-mono resize-none focus:outline-none focus:border-primarybutton"></textarea>
+                    <div class="flex justify-end mt-4">
+                        <button
+                            id="runButton"
+                            onclick="runCode()"
+                            class="bg-primarybutton hover:bg-buttonHover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                            Run Code
+                        </button>
+
+                    </div>
+                </div>
+
+                <!--OUTPUT BOX-->
+                <div class="bg-card border border-border rounded-2x1 p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-x1 font-semibold">
+                            Output
+                        </h2>
+
+                        <button
+                            onclick="copyOutput()"
+                            class="text-secondaryText hover:text-mainText hover:bg-bg px-3 py-2 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                            Copy
+
+                        </button>
+
+                    </div>
+                    <div
+                        id="output"
+                        class="bg-[#263238] border border-[#37474F] rounded-xl min-h-32 p-4 whitespace-pre-wrap text-sm font-mono text-white">
+                        <span class="text-[#78909c]">&gt;</span>
+
+                    </div>
+
+                </div>
+
+            </selection>            
         </div>
     </main>
+
+    <img src="doro.webp"
+    class="fixed bottom-4 right-4 w-16 z-50 select-none pointer-event-none"
+    alt="mascot">
+    <script>
+        const API_BASE_URL = "https://Bhavishyajoshi07.pythonanywhere.com";
+        let selectedLanguage="Python";
+
+        const languageButtons ={
+            Python: "pythonBtn",
+            Java: "javaBtn",
+            "C++": "cppBtn",
+            C: "cBtn",
+            HTML: "htmlBtn"
+        };
+
+        function selectLanguage(language){
+            selectedLanguage = language;
+            document.getElementById("currentLanguage").textContent = language;
+
+            const buttons = document.querySelectorAll(".language-button");
+
+            buttons.forEach(function(button){
+                button.className ="language-button w-full text-left text-secondaryText hover:bg-bg hover:text-mainText text-sm px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
+            });
+
+            const activeButton = document.getElementById(languageButtons[language]);
+            if(activeButton){
+                activeButton.className="language-button w-full text-left bg-primarybutton text-white text-sm font-medium px-4 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95";
+            }
+            const editor = document.getElementById("codeEditor");
+
+            if(language === "Python"){
+                editor.placeholder = "#Write your Python code here";
+            }
+            else if(language ==="Java"){
+                editor.placeholder = "// Write your Java code here";
+            }
+            else if(language ==="C++"){
+                editor.placeholder = "// Write your C++ code here";
+            }
+            else if(language ==="C"){
+                editor.placeholder = "// Write your C code here";
+            }
+            else if(language ==="HTML"){
+                editor.placeholder = "// Write your HTML code here -->";
+            }
+        }
+
+        async function runcode(){
+            const token = localStorage.getItem("token");
+
+            if(!token){
+                window.location.href = "loginpage.html";
+                return;
+            }
+
+            const editor= document.getElementById("codeEditor");
+            const output= document.getElementById("output");
+            const runButton= document.getElementById("runButton");
+
+            const code = editor.value.trim();
+            if(!code){
+                output.innerHTML ='<span claass="text-[#78909C]">Please write some code first.</span>';
+                return;
+            }
+            runButton.disabled = true;
+            runButton.textContent = "Running...";
+
+            output.innerHTML= '<span class = "text-[#C5D3D8]">Running your code...</span>';
+
+            try{
+                console.log("Running:", selectedLanguage);
+
+                const response = await fetch(
+                    `${API_BASE_URL}/api/code/run`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            language: selectedLanguage,
+                            code: code
+                        })
+                    }
+                );
+                const contentType= response.headers.get("content-type") || "";
+
+                let data;
+                if(contentType.include("application/json")){
+                    data= await response.json();
+                }else{
+                    const text = await response.text();
+
+                    console.error(
+                        "Server returned non-JSON:",
+                        text
+                    );
+                    throw new Error(
+                        `Server returned ${response.status}`
+                    );
+                }
+                console.log("Code respponse:", data);
+                if (response.status === 401){
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    window.location.href = "loginpage.html";
+                    return;
+                }
+            }
+        }
+
+    </script>
     
 </body>
 </html>
