@@ -63,8 +63,65 @@
 
             <!--Favourite Language-->
             <div calss="setting-item">
-                <div class="setting-info"></div>
+                <div class="setting-info">
+                    <h3>Favourite Lnaguage</h3>
+                    <p>Select the language you like to practise most.</p>
+                </div>
+
+                <div class="setting-control">
+                    <select id="language-select">
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                        <option value="c">C</option>
+                        <option value="html">HTML</option>
+                    </select>
+
+                    <button id="language-btn">
+                        Save Language
+                    </button>
+                </div>
+                <p id="language-message" class="message"></p>
             </div>
+        </section>
+
+        <!--Notification Settings-->
+        <section class="settings-card">
+            <div class="card-heading">
+                <h2>Notification Settings</h2>
+                <p>Choose which notifications you want to recieve.</p>
+            </div>
+
+            <div class="setting-item notification-item">
+                <div class="setting-info">
+                    <h3>Friend Notifications</h3>
+                    <p>Get notifications about friend requests and activity.</p>
+                </div>
+
+            <label class="switch">
+                <input
+                    type="checkbox"
+                    id="friend-notifications"
+                    checked
+                >
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting-item notification-item">
+
+            <div class="setting-info">
+                <h3>Achievement Notifications</h3>
+                <p>Get notified when you earn XP, badges or achievements.</p>
+            </div>
+            <label class="switch">
+                <input 
+                    type="checkbox"
+                    id="achievement-notifications"
+                    checked
+                >
+                <span class="slider"></span>
+            </label>
+        </div>
         </section>
     </main>
     
