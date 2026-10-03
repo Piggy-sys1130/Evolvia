@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolvia - Settings</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <!--Navigation bar-->
+    <header class="navbar">
+        <div class="logo">
+            <a href="dashboard.html">Evolvia</a>
+        </div>
+
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="practise.html">Practise</a>
+            <a href="friends.html">Friends</a>
+            <a href="profile.html">Profile</a>
+            <a href="badges.html">Badges</a>
+        </nav>
+        <div class="nav-right">
+            <a href="about.html">About</a>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </header>
+
+    <!--Main Setting Area-->
+    <main class="settings-conatiner">
+        <div class="page-heading">
+            <h1>Settings</h1>
+            <p>Manage your Evolvia account and prefrences.</p>
+        </div>
+
+        <!--Profile Settings -->
+        <section class="settings-card">
+            <div class="card-heading">
+                <h2>Profile Settings</h2>
+                <p>Update your basic profile information.</p>
+            </div>
+
+            <!--Username-->
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Username</h3>
+                    <p>Change the Username shown on your profile.</p>
+                </div>
+
+                <div class="setting-control username-control">
+                    <input
+                        type="text"
+                        id="username-input"
+                        placeholder="Enter new username"
+                    >
+
+                    <button id="username-btn">
+                        Change Username
+                    </button>
+                </div>
+                <P id="username-message" class="message"></P>
+            </div>
+
+            <!--Favourite Language-->
+            <div calss="setting-item">
+                <div class="setting-info"></div>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
