@@ -62,3 +62,121 @@ body{
     max-width: 950px;
     margin: 45px auto 70px;
 }
+/*Page Heading*/
+.page-heading{
+    margin-bottom: 25px;
+}
+.page-heading h1{
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+.page-heading p{
+    color: #657d73;
+    font-size: 15px;
+}
+
+/*Settings card*/
+.settings-card{
+    background: #f7faf8;
+    border: 1px solid #d8e3dd;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 15px rgba(40, 70,60,0.06);
+}
+/*Card Heading*/
+.card-heading{
+    margin-bottom: 20px;
+
+}
+.card-heading h2{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.card-heading p{
+    color: #70857d;
+    font-size: 14px;
+}
+
+/*Setting Item*/
+.setting-item{
+    padding: 20px 0;
+    border-top: 1px solid #dce6e1;
+    position: relative;
+}
+.setting-info h3{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.selecting-info p{
+    color: #71867e;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/*Controls*/
+.setting-control{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+.setting-control input,
+.setting-control select{
+    width: 230px;
+    padding: 11px 12px;
+    border: 1px solid #cbdad3;
+    border-radius: 7px;
+    background: white;
+    color: #294c40;
+    outline: none;
+}
+.setting-control button,
+.save-button{
+    border: none;
+    padding: 11px 16px;
+    border-radius: 7px;
+    background: #638b79;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.setting-control button:hover,
+.save-button:hover{
+    background: #527766;
+    transform: translateY(-1px);
+}
+
+/*Message*/
+.message{
+    min-height: 18px;
+    margin-top: 9px;
+    font-size: 13px;
+}
+
+/*Notification Item*/
+.notification-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*Toggle Switch*/
+.switch{
+    position: relative;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+.switch input{
+    display: none;
+}
+.slider{
+    position: absolute;
+    inset: 0;
+    background: #cbdad2;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
