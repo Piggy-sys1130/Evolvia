@@ -46,4 +46,32 @@ startButtons.forEach(function(button){
         }
     });
 });
+/*notification system*/
+const notifications= document .querySelectorAll(".notification");
+notifications .forEach(function(notification){
+    const closeButton = notification.querySelector("notification-close");
+
+    /*open related page*/
+
+    notification.addEventListener("click", function(event){
+         //dont open page when close button  is clicked
+         if(event.traget === closeButton) {
+            return;
+         }
+         const page = notification.getAttribute("data-page");
+         if(page){
+            window.location.href = page;
+         }
+    });
+
+    /*Close Notification */
+    closeButton.addEventListener("click", function(event){
+        event.stopPropagation();
+        notification.classList.add("hide");
+
+        setTimeout(function(){
+            notification.remove();
+        }, 300);
+    });
+});
 
