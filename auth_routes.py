@@ -1,11 +1,14 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify , request
 from sqlalchemy.exc import IntegrityError
 from extensions import db, bcrypt
 from flask_jwt_extended import create_access_token
 from models.user import User
 from models.stats import UserStats
 from utils import get_json_body
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required , get_jwt_identity
+from datetime import datetime
+
+
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -85,3 +88,118 @@ def logout():
         "success" : True,
         "message" : "Logged out successfully"
     }),200
+
+
+@auth_bp.route("/api/change-username",methods=["PUT"])
+@jwt_required()
+def change_username():
+
+    user_id = int(get_jwt_identity())
+    data = request.get_json(silent=True)
+
+    if not isinstance(data,dict):
+        return jsonify({
+            "error" : "Request body must be JSON object"
+        }),400
+
+    new_username = data.get("username")
+
+    if not isinstance(new_username,str) or not new_username.strip():
+        return jsonify({
+            "error" : "Username is required"
+        }),400
+
+    new_username = new_username.strip()
+
+    if len(new_username) < 3:
+        return jsonify({
+            "error" : "Username must be at least 3 characters"
+        }),400
+
+    existing_user = User.query.filter_by(username=new_username).first()
+
+    if existing_user and existing_user.id != user_id:
+        return jsonify({
+            "error" : "Username alredy taken"
+        }),409
+
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({
+            "error" : "User not found"
+        }),400
+
+    user.username = new_username
+
+    db.session.commit()
+
+    return jsonify({
+        "success" : True,
+        "message" : "Username changed successfully",
+        "username" : user.username
+    }),200
+
+
+@auth_bp.route("/api/delete-account",methods = ["DELETE"])
+@jwt_required()
+def delte_account():
+
+    user_id = int(get_jwt_identity())
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({
+            "error" : "User not found"
+        }),404
+
+    UserStats.query.filter_by(user_id=user_id).delete()
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({
+        "success" : True,
+        "message" : "Account deleted successfully" 
+    }),200
+
+@auth_bp.route("/api/status",methods = ["GET"])
+@jwt_required()
+def get_status():
+
+    user_id = int(get_jwt_identity())
+    user = User.query.get(user_id)
+
+    if not user : 
+        return jsonify({
+            "error" : "User not found "
+        }),400
+
+    return jsonify({
+        "is_online" : user.is_online,
+        "last_seen" : user.last_seen .isoformat() if user.last_seen else None
+    }),200
+
+
+@auth_bp.route("/api/status/online",methods = ["POST"])
+@jwt_required()
+def set_online():
+    user_id = int(get_jwt_identity())
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({
+            "error" : "User not found"
+        }),404
+
+    user.is_online = True
+    user.last_seen = datetime.utcnow()
+
+    db.session.commit()
+
+    return jsonify({
+        "success" : True,
+        "is_online" : False,
+        "last_seen" : user.last_seen.isoformat()
+    }),200
+    
