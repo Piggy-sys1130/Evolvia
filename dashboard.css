@@ -853,3 +853,134 @@ button:active{
     transform: translateY(-2px);
 }
 
+/*Notifications*/
+.notification-area{
+    position: fixed;
+    top: 80%;
+    right: 25px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+/*Notification box*/
+.notification{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 15px 40px 15px 15px;
+    background: #f7faf8;
+    border: 0 6px 18px rgba(25,56,47,0.12);
+    cursor: pointer;
+
+    animation: notificationIn 0.45 ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+/*Hover*/
+.notification:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(25,56,47,0.18);
+}
+/*Icon*/
+.notification-icon{
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#eef5f1 ;
+    border-radius: 10px;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+/*Text*/
+.notification-content{
+    min-width: 0;
+}
+.notification-content h4{
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #19382f;
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #638b79;
+}
+
+/*Close Button*/
+.notification-close{
+    position: absolute;
+    top: 8px;
+
+    right: 10px;
+    border: none;
+    background: transparent;
+    color: #789187;
+    font-size: 20px;
+    cursor: pointer;
+}
+.notification-close:hover{
+    color: #19382f;
+
+}
+/*Different notification icons*/
+.badge-notification .notification-icon{
+    background: #f7f0dc;
+
+}
+.level-notification .notification-icon{
+    background: #e5f0ea;
+}
+.request-notification .notification-icon{
+    background: #e8eef5;
+}
+.accepted-notification .notification-icon{
+    background: #e5f0ea;
+}
+
+/*Opening Animation*/
+@keyframes notificationIn{
+    from{
+        opacity: 0;
+        transform: translateX(35px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*Closing Animtion*/
+.notification.hide{
+
+    animation: notificationOut 0.3s ease forwards;
+}
+@keyframes notificationOut{
+    from{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to{
+        opacity: 0;
+        transform: translateX(35px);
+    }
+}
+
+/*Mobile*/
+@media(max-width: 600px){
+    .notification-area{
+        top: 70px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+    }
+    .notification{
+        width: 100%;
+    }
+}
