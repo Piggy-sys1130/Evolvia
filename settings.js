@@ -40,5 +40,229 @@ usernameButton.addEventListener("click", async function () {
             "Please enter a username.";
         return; 
     }
-    
-})
+    try{
+        /*BACKEND CONNECTION
+        pUT/ api/profileusername
+
+        Body:
+        {
+            "username": "newusername"
+        }
+        */
+       const response = await fetch(
+            `${API_BASE_URL}/api/profile/username`,
+            {
+                method: "PUT",
+
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: newUsername
+                })
+            }
+        );
+        const data = await response.json();
+        if(!response.ok){
+            throw new Error(
+                data.error || "username update failed"
+            );
+        }
+        usernameMessage.textContent=
+            "Username updated successfully.";
+
+        usernameInput.value= "";
+    } catch(error){
+        console.error(error);
+
+        usernameMessage.textContent=
+            error.message;
+    }
+});
+
+//FAVOURITE LANGUAGE
+
+languageButton.addEventListener("click", async function(){
+    const language= 
+        languageSelect.value;
+
+    try{
+         /*BACKEND CONNECTION
+        pUT/ api/profile/language
+
+        Body:
+        {
+            "language": "python"
+        }
+        */
+
+        const response = await fetch(
+            `${API_BASE_URL}/api/profile/language`,
+            {
+                method: "PUT",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    language:language
+                })
+            }
+        );
+
+        const data = response.json();
+
+        if(!response.ok){
+            throw new Error(
+                data.error || "Language update failed"
+            );
+        }
+
+        languageMessage.textContent=
+            "Favourite language saved.";
+    } catch(error){
+        console.error(error);
+        languageMessage.textContent= error.message;
+    }
+});
+
+//Notification  settings
+notificationSave.addEventListener("click", async function(){
+    const settings = {
+        friends: friendNotifications.checked,
+
+        achievements: achievementNotifications.checked,
+
+        email: emailNotifications.checked
+    };
+
+    try{
+        /*BACKEND CONNECTION
+        pUT/ api/notifications
+
+        Body:
+        {
+            "friends": true,
+            "achievements": true,
+            "email": false
+        }
+        */
+
+        const response = await fetch(
+            `${API_BASE_URL}/api//notifications`,
+            {
+                method: "PUT",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(settings)
+
+
+            }
+        );
+        const data = await response.json();
+
+        if(!response.ok){
+            throw new Error(
+                data.error ||
+                "Notification update failed"
+            );
+        }
+        notificationMessage.textContent= 
+            "Notification settings saved.";
+    } catch (error){
+        console.error(error);
+
+        notificationMessage.textContent=
+            error.message;
+    }
+});
+
+//GEt NOtifications Settings
+async function loadNotificationSettings(){
+    try{
+        /*BACKEND CONNECTION
+        GET /api/notifications
+        */
+
+        const response = await fetch(
+            `${API_BASE_URL}/api/notifications`
+        );
+        const data= await response.json();
+
+        if(!response.ok){
+            throw new Error(
+                data.error ||
+                "Could not load notifications"
+            );
+        }
+
+        friendNotifications.checked=
+            data.friends;
+
+        achievementNotifications.checked=
+            data.achievements;
+
+        emailNotifications.checked=
+            data.email;
+    } catch(error){
+        console.error(
+            "notification loading error:",
+            error
+        );
+    }
+}
+
+//Get Favourite Language
+async function loadFavouriteLanguage() {
+     try{
+        /*BACKEND CONNECTION
+        GET /api/profile/language
+        */
+
+        const response = await fetch(
+            `${API_BASE_URL}/api/profile/language`
+        );
+        const data= await response.json();
+
+        if(!response.ok){
+            throw new Error(
+                data.error ||
+                "Could not load language"
+            );
+        }
+        if(!data.language){
+            languageSelect.value=
+                data.language;
+        }
+
+    } catch(error){
+        console.error(
+            "Language loading error:",
+            error
+        );
+    }
+}
+
+//Online Status
+async function updateOnlinestatus() {
+     try{
+        /*BACKEND CONNECTION
+        POST /api/status/heartbeat
+        */
+
+        const response = await fetch(
+            `${API_BASE_URL}/api/status/heartbeat`,
+            {
+                method: "POST"
+            }
+        );
+
+        if(!response.ok){
+            throw new Error(
+                "status Update  failed"
+            );
+        }
+        statusDot.classList.remove
+    }
+}
