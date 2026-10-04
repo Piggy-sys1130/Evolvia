@@ -51,3 +51,8 @@ class User(db.Model):
         default = False,
         nullable = False
     )
+
+    favourite_language = db.Column(
+        db.Stirng(30),
+        nullable = True
+    )

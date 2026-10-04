@@ -244,3 +244,68 @@ def get_friends():
     return jsonify({
         "friends": friends
     }), 200
+
+
+# ===============
+# search users
+#================
+
+# search users
+@friend_bp.route("/api/friends/search", methods=["GET"])
+@jwt_required()
+def search_users():
+
+    user_id = int(get_jwt_identity())
+
+    username = request.args.get(
+        "username",
+        ""
+    ).strip()
+
+    if not username:
+        return jsonify({
+            "error": "Username is required"
+        }), 400
+
+    users = User.query.filter(
+        User.username.ilike(f"%{username}%"),
+        User.id != user_id
+    ).limit(10).all()
+
+    results = []
+
+    for user in users:
+
+        friendship = Friendship.query.filter(
+            (
+                (Friendship.sender_id == user_id) &
+                (Friendship.receiver_id == user.id)
+            ) |
+            (
+                (Friendship.sender_id == user.id) &
+                (Friendship.receiver_id == user_id)
+            )
+        ).first()
+
+        status = "none"
+
+        if friendship:
+            if friendship.status == "accepted":
+                status = "friends"
+            elif friendship.status == "pending":
+                if friendship.sender_id == user_id:
+                    status = "request_sent"
+                else:
+                    status = "request_received"
+            elif friendship.status == "rejected":
+                status = "none"
+
+        results.append({
+            "id": user.id,
+            "username": user.username,
+            "friend_status": status
+        })
+
+    return jsonify({
+        "users": results
+    }), 200
