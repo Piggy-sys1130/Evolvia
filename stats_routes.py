@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-
+from models.user import User
+from models.daily_stats import DailyCodingStats
+from datetime import date
 from extensions import db
 from models.stats import UserStats
 from datetime import date
@@ -102,6 +104,11 @@ def get_daily_stats():
         )
 
         db.session.add(daily_stats)
+
+        user = User.query.get(user_id)
+        if user:
+         daily_stats.favourite_language = user.favourite_language
+
         db.session.commit()
 
     total_runs = daily_stats.total_code_runs
