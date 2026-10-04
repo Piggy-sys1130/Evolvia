@@ -345,18 +345,31 @@ def error_solved():
             "error": "Stats not found"
         }), 404
 
+    daily_stats = get_daily_stats(user_id)
+
     gamification = process_error_solved(
         stats
     )
+
+    xp_earned = gamification.get(
+        "xp_earned",
+        0
+    )
+
+    daily_stats.errors += 1
+    daily_stats.xp_earned += xp_earned
 
     db.session.commit()
 
     return jsonify({
         "success": True,
         "user_id": user_id,
-        "gamification": gamification
+        "gamification": gamification,
+        "daily_stats": {
+            "errors": daily_stats.errors,
+            "xp_earned": daily_stats.xp_earned
+        }
     }), 200
-
 
 # Add coding time
 @code_bp.route(
