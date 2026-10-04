@@ -263,6 +263,74 @@ async function updateOnlinestatus() {
                 "status Update  failed"
             );
         }
-        statusDot.classList.remove
+        statusDot.classList.add("online");
+            statusText.textContent=
+                "You are online";
+
+            lasstSeenText.textContent=
+                "Your activity is currently active.";
+        
+    } catch(error){
+        console.error(
+            "status error:",
+            error
+        );
+        statusDot.classList.remove("online");
+            statusText.textContent=
+                "status Unavailable";
+
+            lasstSeenText.textContent=
+                "Could not connect to server.";
     }
 }
+//send heartbeat every 30 seconds
+setInterval(
+    updateOnlinestatus,
+    30000
+);
+
+//LOGOUT
+async function logoutUser(){
+    try{
+        /*
+        BACKEND CONNECTION
+        POST /api/logout
+        */
+
+        await fetch(
+            `${API_BASE_URL}/api/logout`,
+            {
+                method: "POST"
+            }
+        );
+    }catch (error){
+        console.error(
+            "Logout request failed:",
+            error
+        );
+    } finally{
+        //REMOVE LOGIN INFORMATION
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        //go to login page
+        window.location.href=
+            "loginpage.html";
+    }
+}
+
+logoutButton.addEventListener("click",logoutUser);
+
+logoutButtonBottom.addEventListener("click",logoutUser);
+
+//page Load
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadNotificationSettings();
+            loadFavouriteLanguage();
+            updateOnlinestatus();
+    }
+);
