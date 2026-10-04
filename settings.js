@@ -1,242 +1,258 @@
-//Evolvia  API
-const API_BASE_URL=
+// Evolvia API
+const API_BASE_URL =
     "https://Bhavishyajoshi07.pythonanywhere.com";
 
-//Elements
-const usernameInput= document.getElementById("username-input");
-
+// Elements
+const usernameInput = document.getElementById("username-input");
 const usernameButton = document.getElementById("username-btn");
-
 const usernameMessage = document.getElementById("username-message");
 
-const languageSelect= document.getElementById("language-select");
-const languageButton= document.getElementById("language-btn");
-const languageMessage= document.getElementById("language-message");
+const languageSelect = document.getElementById("language-select");
+const languageButton = document.getElementById("language-btn");
+const languageMessage = document.getElementById("language-message");
 
-const friendNotifications= document.getElementById("friend-notifications");
-const achievementNotifications = document.getElementById("achievement-notifications");
+const friendNotifications =
+    document.getElementById("friend-notifications");
 
-const emailNotifications= document.getElementById("email-notifications");
+const achievementNotifications =
+    document.getElementById("achievement-notifications");
 
-const notificationSave= document.getElementById("notification-save");
-const notificationMessage= document.getElementById("notification-message");
+const emailNotifications =
+    document.getElementById("email-notifications");
 
-const statusDot= document.getElementById("status-dot");
+const notificationSave =
+    document.getElementById("notification-save");
 
-const statusText= document.getElementById("status-text");
-const lastSeenText= document.getElementById("last-seen-text");
+const notificationMessage =
+    document.getElementById("notification-message");
 
-const logoutButton= document.getElementById("logout-btn");
+const statusDot = document.getElementById("status-dot");
+const statusText = document.getElementById("status-text");
+const lastSeenText = document.getElementById("last-seen-text");
 
-const logoutButtonBottom= document.getElementById("logout-btn-bottom");
+const logoutButton = document.getElementById("logout-btn");
+const logoutButtonBottom =
+    document.getElementById("logout-btn-bottom");
 
-//Username Change
+
+// JWT token
+function getToken() {
+    return localStorage.getItem("token");
+}
+
+
+// Common headers
+function authHeaders() {
+    return {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${getToken()}`
+    };
+}
+
+
+// Username Change
 usernameButton.addEventListener("click", async function () {
-    const newUsername =
-        usernameInput.value.trim();
 
-    if(newUsername === ""){
-        usernameMessage.textContent=
+    const newUsername = usernameInput.value.trim();
+
+    if (newUsername === "") {
+        usernameMessage.textContent =
             "Please enter a username.";
-        return; 
+        return;
     }
-    try{
-        /*BACKEND CONNECTION
-        pUT/ api/profileusername
 
-        Body:
-        {
-            "username": "newusername"
-        }
-        */
-       const response = await fetch(
+    try {
+
+        const response = await fetch(
             `${API_BASE_URL}/api/profile/username`,
             {
                 method: "PUT",
-
-                headers:{
-                    "Content-Type": "application/json"
-                },
+                headers: authHeaders(),
                 body: JSON.stringify({
                     username: newUsername
                 })
             }
         );
+
         const data = await response.json();
-        if(!response.ok){
+
+        if (!response.ok) {
             throw new Error(
-                data.error || "username update failed"
+                data.error || "Username update failed"
             );
         }
-        usernameMessage.textContent=
+
+        usernameMessage.textContent =
             "Username updated successfully.";
 
-        usernameInput.value= "";
-    } catch(error){
+        usernameInput.value = "";
+
+    } catch (error) {
+
         console.error(error);
 
-        usernameMessage.textContent=
+        usernameMessage.textContent =
             error.message;
     }
 });
 
-//FAVOURITE LANGUAGE
 
-languageButton.addEventListener("click", async function(){
-    const language= 
-        languageSelect.value;
+// Favourite Language
+languageButton.addEventListener("click", async function () {
 
-    try{
-         /*BACKEND CONNECTION
-        pUT/ api/profile/language
+    const language = languageSelect.value;
 
-        Body:
-        {
-            "language": "python"
-        }
-        */
+    try {
 
         const response = await fetch(
-            `${API_BASE_URL}/api/profile/language`,
+            `${API_BASE_URL}/api/favourite-language`,
             {
                 method: "PUT",
-                headers:{
-                    "Content-Type": "application/json"
-                },
+                headers: authHeaders(),
                 body: JSON.stringify({
-                    language:language
+                    language: language
                 })
             }
         );
 
         const data = await response.json();
 
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error(
                 data.error || "Language update failed"
             );
         }
 
-        languageMessage.textContent=
+        languageMessage.textContent =
             "Favourite language saved.";
-    } catch(error){
+
+    } catch (error) {
+
         console.error(error);
-        languageMessage.textContent= error.message;
+
+        languageMessage.textContent =
+            error.message;
     }
 });
 
-//Notification  settings
-notificationSave.addEventListener("click", async function(){
+
+// Notification Settings
+notificationSave.addEventListener("click", async function () {
+
     const settings = {
-        friends: friendNotifications.checked,
+        friend_request_notifications:
+            friendNotifications.checked,
 
-        achievements: achievementNotifications.checked,
+        badge_notifications:
+            achievementNotifications.checked,
 
-        email: emailNotifications.checked
+        notifications_enabled:
+            emailNotifications.checked
     };
 
-    try{
-        /*BACKEND CONNECTION
-        pUT/ api/notifications
-
-        Body:
-        {
-            "friends": true,
-            "achievements": true,
-            "email": false
-        }
-        */
+    try {
 
         const response = await fetch(
-            `${API_BASE_URL}/api/notifications`,
+            `${API_BASE_URL}/api/notification-settings`,
             {
                 method: "PUT",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: authHeaders(),
                 body: JSON.stringify(settings)
-
-
             }
         );
+
         const data = await response.json();
 
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error(
                 data.error ||
                 "Notification update failed"
             );
         }
-        notificationMessage.textContent= 
+
+        notificationMessage.textContent =
             "Notification settings saved.";
-    } catch (error){
+
+    } catch (error) {
+
         console.error(error);
 
-        notificationMessage.textContent=
+        notificationMessage.textContent =
             error.message;
     }
 });
 
-//GEt NOtifications Settings
-async function loadNotificationSettings(){
-    try{
-        /*BACKEND CONNECTION
-        GET /api/notifications
-        */
+
+// Load Notification Settings
+async function loadNotificationSettings() {
+
+    try {
 
         const response = await fetch(
-            `${API_BASE_URL}/api/notifications`
+            `${API_BASE_URL}/api/notification-settings`,
+            {
+                method: "GET",
+                headers: authHeaders()
+            }
         );
-        const data= await response.json();
 
-        if(!response.ok){
+        const data = await response.json();
+
+        if (!response.ok) {
             throw new Error(
                 data.error ||
-                "Could not load notifications"
+                "Could not load notification settings"
             );
         }
 
-        friendNotifications.checked=
-            data.friends;
+        friendNotifications.checked =
+            data.friend_request_notifications;
 
-        achievementNotifications.checked=
-            data.achievements;
+        achievementNotifications.checked =
+            data.badge_notifications;
 
-        emailNotifications.checked=
-            data.email;
-    } catch(error){
+        emailNotifications.checked =
+            data.notifications_enabled;
+
+    } catch (error) {
+
         console.error(
-            "notification loading error:",
+            "Notification loading error:",
             error
         );
     }
 }
 
-//Get Favourite Language
+
+// Load Favourite Language
 async function loadFavouriteLanguage() {
-     try{
-        /*BACKEND CONNECTION
-        GET /api/profile/language
-        */
+
+    try {
 
         const response = await fetch(
-            `${API_BASE_URL}/api/profile/language`
+            `${API_BASE_URL}/api/favourite-language`,
+            {
+                method: "GET",
+                headers: authHeaders()
+            }
         );
-        const data= await response.json();
 
-        if(!response.ok){
+        const data = await response.json();
+
+        if (!response.ok) {
             throw new Error(
                 data.error ||
                 "Could not load language"
             );
         }
-        if(data.language){
-            languageSelect.value=
-                data.language;
+
+        if (data.favourite_language) {
+            languageSelect.value =
+                data.favourite_language;
         }
 
-    } catch(error){
+    } catch (error) {
+
         console.error(
             "Language loading error:",
             error
@@ -244,93 +260,111 @@ async function loadFavouriteLanguage() {
     }
 }
 
-//Online Status
-async function updateOnlinestatus() {
-     try{
-        /*BACKEND CONNECTION
-        POST /api/status/heartbeat
-        */
+
+// Online Status
+async function updateOnlineStatus() {
+
+    try {
 
         const response = await fetch(
-            `${API_BASE_URL}/api/status/heartbeat`,
+            `${API_BASE_URL}/api/status/online`,
             {
-                method: "POST"
+                method: "POST",
+                headers: authHeaders()
             }
         );
 
-        if(!response.ok){
+        const data = await response.json();
+
+        if (!response.ok) {
             throw new Error(
-                "status Update  failed"
+                data.error || "Status update failed"
             );
         }
-        statusDot.classList.add("online");
-            statusText.textContent=
-                "You are online";
 
-            lasstSeenText.textContent=
-                "Your activity is currently active.";
-        
-    } catch(error){
+        statusDot.classList.add("online");
+
+        statusText.textContent =
+            "You are online";
+
+        lastSeenText.textContent =
+            "Your activity is currently active.";
+
+    } catch (error) {
+
         console.error(
-            "status error:",
+            "Status error:",
             error
         );
-        statusDot.classList.remove("online");
-            statusText.textContent=
-                "status Unavailable";
 
-            lasstSeenText.textContent=
-                "Could not connect to server.";
+        statusDot.classList.remove("online");
+
+        statusText.textContent =
+            "Status Unavailable";
+
+        lastSeenText.textContent =
+            "Could not connect to server.";
     }
 }
-//send heartbeat every 30 seconds
+
+
+// Send online status every 30 seconds
 setInterval(
-    updateOnlinestatus,
+    updateOnlineStatus,
     30000
 );
 
-//LOGOUT
-async function logoutUser(){
-    try{
-        /*
-        BACKEND CONNECTION
-        POST /api/logout
-        */
+
+// Logout
+async function logoutUser() {
+
+    try {
 
         await fetch(
-            `${API_BASE_URL}/api/logout`,
+            `${API_BASE_URL}/api/status/offline`,
             {
-                method: "POST"
+                method: "POST",
+                headers: authHeaders()
             }
         );
-    }catch (error){
+
+    } catch (error) {
+
         console.error(
-            "Logout request failed:",
+            "Logout status request failed:",
             error
         );
-    } finally{
-        //REMOVE LOGIN INFORMATION
+
+    } finally {
 
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 
-        //go to login page
-        window.location.href=
+        window.location.href =
             "loginpage.html";
     }
 }
 
-logoutButton.addEventListener("click",logoutUser);
 
-logoutButtonBottom.addEventListener("click",logoutUser);
+logoutButton.addEventListener(
+    "click",
+    logoutUser
+);
 
-//page Load
+logoutButtonBottom.addEventListener(
+    "click",
+    logoutUser
+);
+
+
+// Page Load
 document.addEventListener(
     "DOMContentLoaded",
-    function(){
+    function () {
 
         loadNotificationSettings();
-            loadFavouriteLanguage();
-            updateOnlinestatus();
+        loadFavouriteLanguage();
+        updateOnlineStatus();
+
     }
 );
