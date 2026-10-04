@@ -57,7 +57,7 @@ body{
 }
 
 /*Main Container*/
-.settings-contyainer{
+.settings-container{
     width: 90%;
     max-width: 950px;
     margin: 45px auto 70px;
@@ -179,4 +179,98 @@ body{
     cursor: pointer;
     transition: 0.2s ease;
 }
+.slider:before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.2s ease;
+}
+.switch input:checked + .slider{
+    background: #638b79;
+}
+.switch input:checked + .slider:before{
+    transform: translateX(22px);
+}
+/*Online Status*/
+.status-box{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #eef5f1;
+    padding: 16px;
+    border-radius: 10px;
+}
 
+.statuss-box h3{
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+.status-box p{
+    font-size: 13px;
+    color: #71867e;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #aab8b2;
+}
+.status-dot.online{
+    background: #4b9b6b;
+}
+/*logout*/
+.danger-card{
+    border-color: #e1d5d2;
+}
+.logout-button{
+    border: none;
+    padding: 12px 18px;
+
+    background: #b23a2e;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.logout-button:hover{
+    background: #963027;
+    transform: translateY(-1px);
+}
+
+/*Mobile*/
+@media(max-width: 800px){
+    .navbar{
+        height: auto;
+        padding: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .nav-links{
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+
+    }
+    .settings-container{
+        width: 94%;
+        margin-top: 30px;
+    }
+    .setting-control{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .setting-control input,
+    .setting-control select {
+        width: 100%;
+    }
+    .notification-item{
+        gap: 20px;
+    }
+}
