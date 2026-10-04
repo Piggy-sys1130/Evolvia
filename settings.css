@@ -31,7 +31,7 @@ body{
 
 }
 .nav-links a, 
-.na-right a,
+.nav-right a,
 .nav-right button{
     text-decoration: none;
     color: #315448;
@@ -108,7 +108,7 @@ body{
     font-size: 16px;
     margin-bottom: 5px;
 }
-.selecting-info p{
+.setting-info p{
     color: #71867e;
     font-size: 13px;
     line-height: 1.5;
@@ -206,7 +206,7 @@ body{
     border-radius: 10px;
 }
 
-.statuss-box h3{
+.status-box h3{
     font-size: 15px;
     margin-bottom: 4px;
 }

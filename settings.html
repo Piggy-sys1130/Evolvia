@@ -15,7 +15,7 @@
 
         <nav class="nav-links">
             <a href="dashboard.html">Dashboard</a>
-            <a href="practise.html">Practise</a>
+            <a href="practice.html">Practice</a>
             <a href="friends.html">Friends</a>
             <a href="profile.html">Profile</a>
             <a href="badges.html">Badges</a>
@@ -27,10 +27,10 @@
     </header>
 
     <!--Main Setting Area-->
-    <main class="settings-conatiner">
+    <main class="settings-container">
         <div class="page-heading">
             <h1>Settings</h1>
-            <p>Manage your Evolvia account and prefrences.</p>
+            <p>Manage your Evolvia account and preferences.</p>
         </div>
 
         <!--Profile Settings -->
@@ -62,10 +62,10 @@
             </div>
 
             <!--Favourite Language-->
-            <div calss="setting-item">
+            <div class="setting-item">
                 <div class="setting-info">
-                    <h3>Favourite Lnaguage</h3>
-                    <p>Select the language you like to practise most.</p>
+                    <h3>Favourite Language</h3>
+                    <p>Select the language you like to practice most.</p>
                 </div>
 
                 <div class="setting-control">
@@ -89,7 +89,7 @@
         <section class="settings-card">
             <div class="card-heading">
                 <h2>Notification Settings</h2>
-                <p>Choose which notifications you want to recieve.</p>
+                <p>Choose which notifications you want to receive.</p>
             </div>
 
             <div class="setting-item notification-item">
@@ -122,8 +122,56 @@
                 <span class="slider"></span>
             </label>
         </div>
+
+        <div class="setting-item notification-item">
+            <div class="setting-info">
+                <h3>Email Notifications</h3>
+                <p>Receive important Evolvia updates through email.</p>
+            </div>
+            <label class="switch">
+                <input
+                    type="checkbox"
+                    id="email-notifications"
+                >
+                <span class="slider"></span>
+            </label>
+        </div>
+        <button id="notification-save" class="save-button">
+            Save Notification Settings
+        </button>
+        <p id="notification-message" class="message"></p>
+        </section>
+
+        <!--Online Status-->
+        <section class="settings-card">
+            <div class="card-heading">
+                <h2>Online status</h2>
+                <p>Manage and view your activity status.</p>
+            </div>
+            <div class="status-box">
+                <span id="status-dot" class="status-dot"></span>
+                <div>
+                    <h3 id="status-text">Checking status...</h3>
+                    <p id="last-seen-text">
+                        Please wait...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!--Account-->
+        <section class="settings-card danger-card">
+            <div class="card-heading">
+                <h2>Account</h2>
+                <p>Manage your Evolvia session.</p>
+
+            </div>
+            <button id="logout-btn-bottom" class="logout-button">
+                Logout from Evolvia
+            </button>
         </section>
     </main>
+    <script src="settings.js"></script>
     
 </body>
 </html>

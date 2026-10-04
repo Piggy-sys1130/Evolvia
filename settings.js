@@ -19,12 +19,12 @@ const achievementNotifications = document.getElementById("achievement-notificati
 const emailNotifications= document.getElementById("email-notifications");
 
 const notificationSave= document.getElementById("notification-save");
-const notificationMessage= Document.getElementById("notification-message");
+const notificationMessage= document.getElementById("notification-message");
 
 const statusDot= document.getElementById("status-dot");
 
 const statusText= document.getElementById("status-text");
-const lasstSeenText= document.getElementById("last-seen-text");
+const lastSeenText= document.getElementById("last-seen-text");
 
 const logoutButton= document.getElementById("logout-btn");
 
@@ -33,7 +33,7 @@ const logoutButtonBottom= document.getElementById("logout-btn-bottom");
 //Username Change
 usernameButton.addEventListener("click", async function () {
     const newUsername =
-        usernameInput.ariaValueMax.trim();
+        usernameInput.value.trim();
 
     if(newUsername === ""){
         usernameMessage.textContent=
@@ -109,7 +109,7 @@ languageButton.addEventListener("click", async function(){
             }
         );
 
-        const data = response.json();
+        const data = await response.json();
 
         if(!response.ok){
             throw new Error(
@@ -148,7 +148,7 @@ notificationSave.addEventListener("click", async function(){
         */
 
         const response = await fetch(
-            `${API_BASE_URL}/api//notifications`,
+            `${API_BASE_URL}/api/notifications`,
             {
                 method: "PUT",
 
@@ -231,7 +231,7 @@ async function loadFavouriteLanguage() {
                 "Could not load language"
             );
         }
-        if(!data.language){
+        if(data.language){
             languageSelect.value=
                 data.language;
         }
